@@ -19,7 +19,7 @@ function ProductList() {
    function Detail(id){
 
 
-    history(`/Produit/${id}`)
+    history(`/Product/${id}`)
 
 
   }

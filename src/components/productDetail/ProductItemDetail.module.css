@@ -1,0 +1,53 @@
+.img{
+
+    width: 70%;
+    display: block;
+    margin: auto;
+    border: 1px solid black;
+}
+
+
+.item{
+
+    height: 30rem;
+    width: 100%;
+
+}
+
+.imgGrille{
+
+
+    display: flex;
+    margin-top: 10rem;
+
+}
+.imgGrille img{
+
+
+    width: 5rem;
+   cursor: pointer; 
+   border: 1px solid black;
+   margin: 0.5rem;
+
+}
+
+
+@media screen and(min-width:800px) {
+    
+
+    .img{
+
+        display: block;
+        margin: auto;
+        width: 60%;
+        height: 10rem;
+    }
+    
+    .item{
+    
+        height: 34rem;
+        width: 25%;
+
+    }
+    
+}
