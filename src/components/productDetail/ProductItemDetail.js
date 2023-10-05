@@ -85,13 +85,15 @@ export default function ProductsItemDetail({ProductList,ProductDetailAction}) {
                 <div className="d-flex justify-content-center"> 
                 
                         <Button style={{marginBottom:"1rem",marginTop:"1rem"}} variant="success">Ajoutez au panier</Button>
-                                          
+
+                </div>
+
                 <div>
 
 
-                  <h2> Descriptif technique : </h2>
+                  <h2 className="text-center"> Descriptif technique : </h2>
 
-                  <p>
+                  <p className="text-center">
                   {ProductList.Description}
                   </p>
                   
@@ -100,7 +102,6 @@ export default function ProductsItemDetail({ProductList,ProductDetailAction}) {
               </div>
              
            
-          </div>
 
            
       </div>
