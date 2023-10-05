@@ -30,6 +30,13 @@ class ProductController{
        return res.json(Products)
 
     }
+   async postPanier(req,res) {
+
+    const Produit = req.body
+
+    console.log(req.body);
+
+    }
 
     async getSearch(req,res){
 
