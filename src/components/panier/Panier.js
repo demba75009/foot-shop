@@ -1,15 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState,useContext } from 'react';
 import { Table, Button } from 'react-bootstrap';
-
+import { PanierContext } from "../../context/PanierContext";
 function Panier() {
-  const [panier, setPanier] = useState([
-    { id: 1, nom: 'Produit 1', quantite: 2, prix: 10 },
-    { id: 2, nom: 'Produit 2', quantite: 1, prix: 20 },
-  ]);
+ 
+
+  const Cart  = useContext(PanierContext)
+
+  const [panier, setPanier] = useState(Cart);
+
+  console.log(panier);
 
   // Fonction pour calculer le prix total
   const calculerTotal = () => {
-    return panier.reduce((total, article) => total + article.quantite * article.prix, 0);
+    return panier.reduce((total, article) => total + article.quantite * article.produit.Prix, 0);
   };
 
   return (
@@ -26,16 +29,19 @@ function Panier() {
         </thead>
         <tbody>
           {panier.map((article) => (
-            <tr key={article.id}>
-              <td>{article.nom}</td>
+            <tr key={article.produit.id}>
+              <td>
+                    <img className='d-block' width={0} height={50}  src={article.produit.Image[0]} />
+                  {article.produit.Nom}
+              </td>
               <td>{article.quantite}</td>
-              <td>${article.prix}</td>
-              <td>${article.quantite * article.prix}</td>
+              <td>${article.produit.Prix}</td>
+              <td>${article.quantite * article.produit.Prix}</td>
             </tr>
           ))}
         </tbody>
       </Table>
-      <p>Prix total : ${calculerTotal()}</p>
+      <p className='text-danger text-center ms-2'>Prix total : ${calculerTotal()}</p>
       <Button variant="primary">Payer</Button>
     </div>
   );
