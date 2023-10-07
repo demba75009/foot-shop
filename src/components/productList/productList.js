@@ -13,12 +13,28 @@ function ProductList() {
   const history = useNavigate()
 
    const [Produits, setProduit] = useState(Prod)
-   const [addPanierOk, setaddPanierOk] = useState(false)
    
-   console.log(Prod);
+   console.log(Produits);
+
     // État pour stocker le panier
     const [panier, setPanier] = useState(Cart);
-    
+
+    // console.log(panier);
+
+    // panier.forEach(o1 => {
+
+    //   const o2 = Produits.find(o2 =>o2[o2.InPanier] === o1[o1.produit.InPanier])
+
+
+    //   if (o2 && o1.InPanier !== o2.InPanier) {
+    //     console.log("true");
+    //     console.log(o2);
+    //     // Si un objet correspondant est trouvé et que la valeur de la clé est différente, mettez à jour la valeur
+    //     o2.InPanier = true;
+    //   }
+
+    // })
+
   
     // Fonction pour ajouter un produit au panier
     const AddPanier = (id, quantite) => {
