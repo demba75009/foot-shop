@@ -2,7 +2,7 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 
 
-export default function ProductsItem({ProductList,ProductDetailAction,ProductAddPanier}) {
+export default function ProductsItem({ProductList,ProductDetailAction,ProductAddPanier,ProductDeletePanier}) {
     
     return(
     
@@ -11,7 +11,16 @@ export default function ProductsItem({ProductList,ProductDetailAction,ProductAdd
       <Card.Body>
         <Card.Title>{ProductList.Nom}</Card.Title>
         <Card.Title>{ProductList.Prix}$</Card.Title>
-        <Button onClick={ProductAddPanier} style={{marginBottom:"1rem",marginTop:"1rem"}} variant="success">Ajoutez au panier</Button>
+
+        {
+          !ProductList.InPanier ? 
+          <Button onClick={ProductAddPanier} style={{marginBottom:"1rem",marginTop:"1rem"}} variant="success">Ajoutez au panier</Button>
+          :
+          <Button onClick={ProductDeletePanier} style={{marginBottom:"1rem",marginTop:"1rem"}} variant="danger">Retirer du Panier</Button>
+
+        }
+       
+       
       </Card.Body>
     </Card>
     )

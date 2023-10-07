@@ -15,6 +15,11 @@ function Panier() {
     return panier.reduce((total, article) => total + article.quantite * article.produit.Prix, 0);
   };
 
+  function DeleteProduit( id ){
+console.log(id);
+
+  }
+
   return (
     <div>
       <h2>Panier</h2>
@@ -25,11 +30,12 @@ function Panier() {
             <th>Quantité</th>
             <th>Prix unitaire</th>
             <th>Total</th>
+            <th>Action</th>
           </tr>
         </thead>
         <tbody>
           {panier.map((article) => (
-            <tr key={article.produit.id}>
+            <tr key={article.produit._id}>
               <td>
                     <img className='d-block' width={0} height={50}  src={article.produit.Image[0]} />
                   {article.produit.Nom}
@@ -37,6 +43,7 @@ function Panier() {
               <td>{article.quantite}</td>
               <td>${article.produit.Prix}</td>
               <td>${article.quantite * article.produit.Prix}</td>
+              <td><Button onClick={DeleteProduit(article.produit._id)} variant='ligth' className='btn btn-outline-danger'>X</Button></td>
             </tr>
           ))}
         </tbody>
