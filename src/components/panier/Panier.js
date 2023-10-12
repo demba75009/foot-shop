@@ -29,6 +29,35 @@ function Panier() {
     return panier.reduce((total, article) => total + article.quantite * article.produit.Prix, 0);
   };
 
+  function Changequantité(article,quantité) {
+    
+  
+    
+    article.quantite = parseInt(quantité, 10)
+    
+    const tableauLocalStorage = JSON.parse(localStorage.getItem('panier'));
+
+    var indexASupprimer = -1;
+
+
+    for (var i = 0; i < tableauLocalStorage.length; i++) {
+     if (tableauLocalStorage[i].produit._id === article.produit._id ) {
+       indexASupprimer = i;
+       break; // Quittez la boucle une fois que l'objet est trouvé
+     }
+   }
+
+   if (indexASupprimer !== -1) {
+    tableauLocalStorage.splice(indexASupprimer, 1,article);
+  }
+
+  localStorage.setItem('panier', JSON.stringify(tableauLocalStorage));
+
+      setPanier(tableauLocalStorage);
+
+
+  }
+
   function DeleteProduit(articleIdToDelete ){
 
     const produit = panier.find(p=>p.produit._id===articleIdToDelete)
@@ -94,10 +123,16 @@ function Panier() {
           {panier.map((article) => (
             <tr key={article.produit._id}>
               <td>
-                    <img className='d-block' width={0} height={50}  src={article.produit.Image[0]} />
+                <img className='d-block' width={0} height={50}  src={article.produit.Image[0]} />
                   {article.produit.Nom}
               </td>
-              <td>{article.quantite}</td>
+              <td>
+                    <select value={article.quantite} onChange={(e) => Changequantité(article,e.target.value)}>
+                  {Array.from({ length: 10 }, (_, i) => (
+                    <option key={i} value={i + 1}>{i + 1}</option>
+                  ))}
+                </select>
+            </td>
               <td>${article.produit.Prix}</td>
               <td>${article.quantite * article.produit.Prix}</td>
               <td><Button variant="light" onClick={()=>openDeleteModal(article.produit._id)}className='btn btn-outline-danger'>X</Button></td>
