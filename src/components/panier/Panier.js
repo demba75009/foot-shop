@@ -29,7 +29,7 @@ function Panier() {
     return panier.reduce((total, article) => total + article.quantite * article.produit.Prix, 0);
   };
 
-  function Changequantité(article,quantité) {
+  function ChangeQuantité(article,quantité) {
     
   
     
@@ -127,7 +127,7 @@ function Panier() {
                   {article.produit.Nom}
               </td>
               <td>
-                    <select value={article.quantite} onChange={(e) => Changequantité(article,e.target.value)}>
+                    <select value={article.quantite} onChange={(e) => ChangeQuantité(article,e.target.value)}>
                   {Array.from({ length: 10 }, (_, i) => (
                     <option key={i} value={i + 1}>{i + 1}</option>
                   ))}
