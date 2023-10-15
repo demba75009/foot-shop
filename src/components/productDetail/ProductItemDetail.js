@@ -2,7 +2,7 @@ import { useState } from "react"
 import Style from "./ProductItemDetail.module.css"
 import Button from 'react-bootstrap/Button';
 
-export default function ProductsItemDetail({ProductList,ProductDetailAction}) {
+export default function ProductsItemDetail({ProductList,ProductDetailAction,ProductAddPanier}) {
     
   const [image, setimage] = useState(ProductList.Image[0])
 
@@ -83,8 +83,15 @@ export default function ProductsItemDetail({ProductList,ProductDetailAction}) {
 
            </div>       
                 <div className="d-flex justify-content-center"> 
+                <select id="taille">
+                  <option value="xs">Taille XS</option>
+                  <option value="s">Taille S</option>
+                  <option value="m">Taille M</option>
+                  <option value="l">Taille L</option>
+                  <option value="xl">Taille XL</option>
+              </select>
                 
-                        <Button style={{marginBottom:"1rem",marginTop:"1rem"}} variant="success">Ajoutez au panier</Button>
+                        <Button onClick={ProductAddPanier} style={{marginBottom:"1rem",marginTop:"1rem"}} variant="success">Ajoutez au panier</Button>
 
                 </div>
 
