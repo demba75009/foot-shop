@@ -11,9 +11,12 @@ import 'react-toastify/dist/ReactToastify.css';
 
 export default function ProduitDetail () {
 
+
+
    const Produits  = useContext(ProductsContext)
 
    const Cart  = useContext(PanierContext)
+
 
 
    const url = useParams()
@@ -24,6 +27,8 @@ export default function ProduitDetail () {
 
    // État pour stocker le panier
    const [panier, setPanier] = useState(Cart);
+   const [taille, setTaille] = useState("xs");
+   const [quantite, setQuantite] = useState(1);
    
 
     panier.forEach(o1 => {
@@ -41,11 +46,30 @@ export default function ProduitDetail () {
       }
 
     })
+
+   function ChangeTaille(size){
+
+    const nouvelletaille = size
+
+    setTaille(nouvelletaille)
+   }
+
+   function ChangeNombre(quantité) {
+
+    const quantite1 = parseInt(quantité, 10)
+
+    setQuantite(quantite1)
+
+
+   }
+
     // Fonction pour ajouter un produit au panier
-    const AddPanier = (id, quantite) => {
+    const AddPanier = (id, quantiteFinal) => {
       const produit = Produits.find(p=>p._id===id)
        
+      produit.taille = taille;
       
+
       const nouvelArticle = { produit, quantite };
 
     
@@ -74,7 +98,7 @@ export default function ProduitDetail () {
     
  };
  
-
+ 
 
    return(
 
@@ -90,9 +114,14 @@ export default function ProduitDetail () {
                key={p._id}
                ProductList={p}
                ProductAddPanier={()=>AddPanier(p._id,1)}
+               Taille={taille}
+               ChangeSize={ChangeTaille}
+               ChangeQuantité={ChangeNombre}
 
-
+ 
                />
+
+              
      ))}
        
        

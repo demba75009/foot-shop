@@ -2,7 +2,7 @@ import { useState } from "react"
 import Style from "./ProductItemDetail.module.css"
 import Button from 'react-bootstrap/Button';
 
-export default function ProductsItemDetail({ProductList,ProductDetailAction,ProductAddPanier}) {
+export default function ProductsItemDetail({ProductList,ProductDetailAction,ProductAddPanier,ChangeSize,ChangeQuantité,Taille}) {
     
   const [image, setimage] = useState(ProductList.Image[0])
 
@@ -83,17 +83,27 @@ export default function ProductsItemDetail({ProductList,ProductDetailAction,Prod
 
            </div>       
                 <div className="d-flex justify-content-center"> 
-                <select id="taille">
-                  <option value="xs">Taille XS</option>
-                  <option value="s">Taille S</option>
-                  <option value="m">Taille M</option>
-                  <option value="l">Taille L</option>
-                  <option value="xl">Taille XL</option>
-              </select>
                 
-                        <Button onClick={ProductAddPanier} style={{marginBottom:"1rem",marginTop:"1rem"}} variant="success">Ajoutez au panier</Button>
+                        
+                        <p className="mt-4 ms-2">Taille:</p>
 
-                </div>
+                      <select value={Taille} onChange={(e)=>ChangeSize(e.target.value)} className="mt-4 ms-2 h-25" id="taille">
+                          <option value="xs">Taille XS</option>
+                          <option value="s">Taille S</option>
+                          <option value="m">Taille M</option>
+                          <option value="l">Taille L</option>
+                          <option value="xl">Taille XL</option>
+                      </select>
+
+                      <p className="mt-4 ms-2">Quantité:</p>
+                      <select className="mt-4 me-2 ms-2 h-25"  onChange={(e) => ChangeQuantité(e.target.value)}>
+                  {Array.from({ length: 10 }, (_, i) => (
+                    <option key={i} value={i + 1}>{i + 1}</option>
+                  ))}
+                  </select>
+                  <Button onClick={ProductAddPanier} style={{marginBottom:"1rem",marginTop:"1rem"}} variant="success">Ajoutez au panier</Button>
+
+              </div>
 
                 <div>
 

@@ -113,6 +113,7 @@ function Panier() {
         <thead>
           <tr>
             <th>Produit</th>
+            <th>Taille</th>
             <th>Quantité</th>
             <th>Prix unitaire</th>
             <th>Total</th>
@@ -126,6 +127,9 @@ function Panier() {
                 <img className='d-block' width={0} height={50}  src={article.produit.Image[0]} />
                   {article.produit.Nom}
               </td>
+              <td>{article.produit.taille}</td>
+
+
               <td>
                     <select value={article.quantite} onChange={(e) => ChangeQuantité(article,e.target.value)}>
                   {Array.from({ length: 10 }, (_, i) => (
