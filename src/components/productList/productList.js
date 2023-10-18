@@ -17,6 +17,7 @@ function ProductList() {
    
    // État pour stocker le panier
    const [panier, setPanier] = useState(Cart);
+
    
 
     panier.forEach(o1 => {
@@ -35,13 +36,16 @@ function ProductList() {
 
     })
 
+   
+
   
     // Fonction pour ajouter un produit au panier
     const AddPanier = (id, quantite) => {
          const produit = Produits.find(p=>p._id===id)
-          
+
+          const taille= "s"          
          
-         const nouvelArticle = { produit, quantite };
+         const nouvelArticle = { produit, quantite,taille };
 
        
          const tooglePanier =  panier.some(p =>p[produit.Nom] === nouvelArticle.Nom)
@@ -53,7 +57,7 @@ function ProductList() {
 
           nouveauPanier.push(nouvelArticle)
 
-         
+          
             setPanier(nouveauPanier);  
   
                 // Sérialisez le panier en JSON
@@ -136,6 +140,8 @@ function ProductList() {
       ProductDetailAction={()=>Detail(p._id)}
       ProductAddPanier={()=>AddPanier(p._id,1)}
       ProductDeletePanier={()=>DeletePanier(p._id,1)}
+
+
 
       />
 

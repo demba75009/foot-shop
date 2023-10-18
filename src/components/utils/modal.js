@@ -1,7 +1,7 @@
 import React from 'react';
 import { Modal, Button } from 'react-bootstrap';
 
-function DeleteArticleModal({ show, onHide, onDelete,id }) {
+function DeleteArticleModal({ show, onHide, onDelete,id,t }) {
   return (
     <Modal show={show} onHide={onHide} centered>
       <Modal.Header closeButton>
@@ -14,7 +14,7 @@ function DeleteArticleModal({ show, onHide, onDelete,id }) {
         <Button variant="secondary" onClick={onHide}>
           Annuler
         </Button>
-        <Button variant="danger" onClick={() =>onDelete(id)}>
+        <Button variant="danger" onClick={() =>onDelete(id,t)}>
           Supprimer
         </Button>
       </Modal.Footer>

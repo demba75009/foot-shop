@@ -67,10 +67,9 @@ export default function ProduitDetail () {
     const AddPanier = (id, quantiteFinal) => {
       const produit = Produits.find(p=>p._id===id)
        
-      produit.taille = taille;
       
 
-      const nouvelArticle = { produit, quantite };
+      const nouvelArticle = { produit, quantite,taille };
 
     
       const tooglePanier =  panier.some(p =>p[produit.Nom] === nouvelArticle.Nom)
