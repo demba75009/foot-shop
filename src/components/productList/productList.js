@@ -47,6 +47,7 @@ function ProductList() {
          
          const nouvelArticle = { produit, quantite,taille };
 
+         
        
          const tooglePanier =  panier.some(p =>p[produit.Nom] === nouvelArticle.Nom)
  

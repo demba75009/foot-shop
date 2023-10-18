@@ -64,19 +64,58 @@ export default function ProduitDetail () {
    }
 
     // Fonction pour ajouter un produit au panier
-    const AddPanier = (id, quantiteFinal) => {
+    const AddPanier = (id) => {
       const produit = Produits.find(p=>p._id===id)
        
       
 
       const nouvelArticle = { produit, quantite,taille };
 
+      
     
       const tooglePanier =  panier.some(p =>p[produit.Nom] === nouvelArticle.Nom)
+
+      const tooglePanier1 =  panier.some(p =>p[produit.Nom] === nouvelArticle.Nom && p.taille === nouvelArticle.taille )
+
 
      if(tooglePanier)
        nouvelArticle.produit.InPanier = true
 
+       if(tooglePanier1)
+       {
+        const tableauLocalStorage = JSON.parse(localStorage.getItem('panier'));
+
+        var indexASupprimer = -1;
+    
+        for (var i = 0; i < tableauLocalStorage.length; i++) {
+         if (tableauLocalStorage[i].taille === nouvelArticle.taille && tableauLocalStorage[i].produit._id === nouvelArticle.produit._id )  {
+    
+          
+            console.log("ok");
+            indexASupprimer = i;
+            break; // Quittez la boucle une fois que l'objet est trouvé
+    
+          
+         }
+       }
+    
+    
+       if (indexASupprimer !== -1) {
+        tableauLocalStorage.splice(indexASupprimer, 1,nouvelArticle);
+      }
+    
+      localStorage.setItem('panier', JSON.stringify(tableauLocalStorage));
+    
+          setPanier(tableauLocalStorage);
+
+
+       }
+
+
+       if(!tooglePanier1){
+
+
+       
        const nouveauPanier = [...panier];
 
        nouveauPanier.push(nouvelArticle)
@@ -90,10 +129,11 @@ export default function ProduitDetail () {
 
        // Stockez la chaîne JSON dans le localStorage avec une clé (par exemple, "panier")
        localStorage.setItem('panier', panierJSON);
+       
+       
+      }
 
-     
-       toast.success(`${produit.Nom} a été ajouté au panier !`);
-
+      toast.success(`${produit.Nom} a été ajouté au panier !`);
     
  };
  
@@ -122,6 +162,9 @@ export default function ProduitDetail () {
 
               
      ))}
+
+        <ToastContainer />
+
        
        
 
