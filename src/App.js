@@ -13,6 +13,7 @@ function App() {
       <Route  path="/Panier" element={<Panier/>} />
       <Route  path="/Product/:id" element={<ProductDetail/>} />
       <Route  path="/add" element={<AddProduct/>} />
+      <Route  path="/signup" element={<AddProduct/>} />
 
         
       </Routes>      
