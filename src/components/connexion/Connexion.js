@@ -4,6 +4,8 @@ import fetch from "isomorphic-fetch";
 import { useNavigate } from 'react-router-dom';
 import { useForm } from "react-hook-form";
 import * as yup from 'yup';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 export default function Connexion(){
@@ -72,7 +74,8 @@ export default function Connexion(){
        const responseData = await response.json();
 
        const user25 = JSON.stringify(responseData.userAuth)
-       console.log(user25);
+
+       const userProfilOK = JSON.parse(user25)
        
        const token = responseData.token;
 
@@ -82,7 +85,20 @@ export default function Connexion(){
 
 
        if(responseData !== "error")
-        history('/');
+       {
+        toast.success(`Bienvenue ${userProfilOK.Username}!`,{
+
+            autoClose:500,
+          
+            onClose:()=>{
+                setTimeout(() => {
+
+                history('/');
+                },1000)
+            }
+        });
+
+       }
        else 
         throw Error
 
@@ -140,6 +156,8 @@ export default function Connexion(){
         </form>
  
 </div>
+<ToastContainer />
+
         
         </>
 

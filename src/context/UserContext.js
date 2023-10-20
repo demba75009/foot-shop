@@ -6,7 +6,7 @@ let user = []
 
 if (userJSON) {
   // Désérialisez la chaîne JSON en un objet JavaScript
-   user = JSON.parse(userJSON);
+   user = [JSON.parse(userJSON)];
 
   // Maintenant, "user" contient votre user précédemment stocké dans le localStorage
 } else {

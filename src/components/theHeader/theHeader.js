@@ -6,6 +6,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import { PanierContext } from "../../context/PanierContext";
+import { userContext } from "../../context/UserContext";
 import { useState,useContext } from "react";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -27,8 +28,9 @@ function CartIcon({ itemCount }) {
 
 function TheHeader() {
   const Cart  = useContext(PanierContext)
-
   const [panier, setPanier] = useState(Cart);
+
+  const user = useContext(userContext)
 
   return (
     <>
@@ -55,9 +57,19 @@ function TheHeader() {
                   <Nav.Link href="/">Acceuil</Nav.Link>
                   <Nav.Link href="/produit">Maillot</Nav.Link>
                   <Nav.Link href="/panier">Panier</Nav.Link>
+                  
+                  {user.length > 0 ? (
+
+                    <Nav.Link onClick={()=>{localStorage.removeItem('user')
+                    localStorage.removeItem('panier')}} href="/">Deconnexion</Nav.Link>
+
+
+                  ) :
+                  <>
                   <Nav.Link href="/signin">Connexion</Nav.Link>
                   <Nav.Link href="/signup">Inscription</Nav.Link>
-
+                  </>
+                }
                 </Nav>
                 <Form className="d-flex">
                   <Form.Control
