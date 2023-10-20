@@ -55,6 +55,7 @@ function TheHeader() {
                   <Nav.Link href="/">Acceuil</Nav.Link>
                   <Nav.Link href="/produit">Maillot</Nav.Link>
                   <Nav.Link href="/panier">Panier</Nav.Link>
+                  <Nav.Link href="/signin">Connexion</Nav.Link>
                   <Nav.Link href="/signup">Inscription</Nav.Link>
 
                 </Nav>
