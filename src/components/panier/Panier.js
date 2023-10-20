@@ -2,6 +2,7 @@ import React, { useState,useContext } from 'react';
 import { Table, Button } from 'react-bootstrap';
 import { PanierContext } from "../../context/PanierContext";
 import DeleteArticleModal from '../utils/modal'; // Assurez-vous d'importer le composant
+import { useNavigate } from 'react-router-dom';
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -14,6 +15,8 @@ function Panier() {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [articleIdToDelete, setArticleIdToDelete] = useState(null);
   const [articleSizeToDelete, setArticleSizeToDelete] = useState("");
+
+  const history = useNavigate(); // Utilisé pour naviguer vers une autre route
 
 
   function openDeleteModal (id,t)  {
@@ -201,7 +204,7 @@ function Panier() {
         </tbody>
       </Table>
       <p className='text-danger text-center ms-2'>Prix total : ${calculerTotal()}</p>
-      <Button variant="primary">Payer</Button>
+      <Button onClick={()=>{history("/checkout")}} variant="primary">Valider le panier</Button>
       <ToastContainer />
 
     </div>
