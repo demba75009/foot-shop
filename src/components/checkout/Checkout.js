@@ -20,18 +20,35 @@ function CheckoutForm() {
     const [isPaymentComplete, setIsPaymentComplete] = useState(false);
     const [paiementRefuse, setPaiementRefuse] = useState(false);
     const [ErrorCarteinvalide, setErrorCarteInvalide] = useState("");
-
-
     const [panier, setPanier] = useState(Cart);
     const [clientName, setClientName] = useState("");
+    const [nom, setNom] = useState("");
+    const [prenom, setPrenom] = useState("");
+    const [email, setEmail] = useState("");
+    const [adresse, setAdresse] = useState("");
+    const [codePostal, setCodePostal] = useState("");
+    const [ville, setVille] = useState("");
 
+
+
+    const user = User
   
   
       const t = panier.reduce((total, article) => total + article.quantite * article.produit.Prix, 0);
 
     
   
-    const handleSubmit = async (event) => {
+    const Validation = async (event) => {
+
+      const client = {
+        nom,
+        prenom,
+        email,
+        adresse,
+        codePostal,
+        ville
+      }
+
       event.preventDefault();
   
       if (!stripe || !elements) {
@@ -45,7 +62,7 @@ function CheckoutForm() {
 
       const { token, error } = await stripe.createToken(cardElement,{
 
-        nameCard: clientName
+        nameCard: `${client.nom} ${client.prenom}` 
       });
 
 
@@ -62,7 +79,7 @@ function CheckoutForm() {
             headers: {
               'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ token: token.id, montant: t,client: clientName  }),
+            body: JSON.stringify({ token: token.id, montant: t,client: client }),
           });
       
           if (response.ok) {
@@ -97,9 +114,39 @@ function CheckoutForm() {
         ) :""
         }
         <>
+        <Commande />
 
       <Form className='mt-5'>
+
+      <h2>Information de Livraison</h2>
+          <Form.Group controlId="formBasicName">
+            <Form.Label>Nom complet</Form.Label>
+            <Form.Control type="text" placeholder="Entrez votre nom" value={nom} onChange={e => setNom(e.target.value)} />
+          </Form.Group>
+          <Form.Group controlId="formBasicName">
+            <Form.Label>Prenom</Form.Label>
+            <Form.Control type="text" placeholder="Entrez votre prénom" value={prenom} onChange={e => setPrenom(e.target.value)} />
+          </Form.Group>
+          <Form.Group controlId="formBasicName">
+            <Form.Label>Email</Form.Label>
+            <Form.Control type="email" placeholder="Entrez votre prénom" value={email} onChange={e => setEmail(e.target.value)} />
+          </Form.Group>
+          <Form.Group controlId="formBasicName">
+            <Form.Label>Adresse</Form.Label>
+            <Form.Control type="text" placeholder="Entrez votre Adresse" value={adresse} onChange={e => setAdresse(e.target.value)} />
+          </Form.Group>
+          <Form.Group controlId="formBasicName">
+            <Form.Label>Code postal</Form.Label>
+            <Form.Control type="text" placeholder="Entrez votre Code postal" value={codePostal} onChange={e => setCodePostal(e.target.value)} />
+          </Form.Group>
+          <Form.Group controlId="formBasicName">
+            <Form.Label>Ville</Form.Label>
+            <Form.Control type="text" placeholder="Entrez votre Ville"  value={ville} onChange={e => setVille(e.target.value)}/>
+          </Form.Group>
+
+        <h2 className='mt-5'>Paiement:</h2>
         <Form.Group controlId="formCard">
+
         <Form.Label>Nom sur la carte</Form.Label>
 
         <Form.Control type="text" placeholder="Nom sur la carte"  value={clientName} onChange={e => setClientName(e.target.value)} />
@@ -123,7 +170,7 @@ function CheckoutForm() {
               }}
             />        
           </Form.Group>
-        <Button className='mt-4' onClick={handleSubmit}>Payer {t} Eur</Button>
+        <Button className='mt-4' onClick={Validation}>Payer {t} Eur</Button>
       </Form>
       </>
       </div>
@@ -186,42 +233,15 @@ function CheckoutForm() {
 export default function Checkout(){
 
 
-
     
 
     return (
         <Container>
 
-            <Commande />
 
         <Form>
-          <h2>Information de Livraison</h2>
-          <Form.Group controlId="formBasicName">
-            <Form.Label>Nom complet</Form.Label>
-            <Form.Control type="text" placeholder="Entrez votre nom" />
-          </Form.Group>
-          <Form.Group controlId="formBasicName">
-            <Form.Label>Prenom</Form.Label>
-            <Form.Control type="text" placeholder="Entrez votre prénom" />
-          </Form.Group>
-          <Form.Group controlId="formBasicName">
-            <Form.Label>Email</Form.Label>
-            <Form.Control type="text" placeholder="Entrez votre prénom" />
-          </Form.Group>
-          <Form.Group controlId="formBasicName">
-            <Form.Label>Adresse</Form.Label>
-            <Form.Control type="text" placeholder="Entrez votre Adresse" />
-          </Form.Group>
-          <Form.Group controlId="formBasicName">
-            <Form.Label>Code postal</Form.Label>
-            <Form.Control type="text" placeholder="Entrez votre Code postal" />
-          </Form.Group>
-          <Form.Group controlId="formBasicName">
-            <Form.Label>Ville</Form.Label>
-            <Form.Control type="text" placeholder="Entrez votre Ville" />
-          </Form.Group>
+        
           {/* Ajoutez d'autres champs de livraison ici */}
-          <h2 className='mt-5'>Paiement:</h2>
           <Elements stripe={stripePromise}>
             <CheckoutForm />
           </Elements>

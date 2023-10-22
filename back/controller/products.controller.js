@@ -52,23 +52,26 @@ class ProductController{
 
 
       try {
+       
+        
+        const clientStripe = await stripe.customers.create({
+          name: `${client.nom} ${client.prenom}`, // Extrayez le nom du client des métadonnées du token.
+          email: client.email, // Extrayez le nom du client des métadonnées du token.
+          address:client.adressse,
+                
+
+        });
+
         const charge = await stripe.charges.create({
           source: token,          
           amount: montant * 100, // Le montant en centimes, par exemple 1000 pour 10 €.
           currency: 'EUR', // La devise à utiliser.
-          description: `Foot-shop: ${client} commande n ° ${idCommende} `,
-          metadata: {
-            clientName: client, // Extrayez le nom du client des métadonnées du token.
-          },
-        });
-        
-        const clientStripe = await stripe.customers.create({
-          name: client,
+          description: `Foot-shop: ${client.nom} ${client.prenom} commande n ° ${idCommende} `,
           
         });
 
         // Le paiement a réussi, renvoyez une réponse appropriée.
-        res.json({ success: true, charge });
+        res.json({ success: true, charge,clientStripe });
       } catch (error) {
         console.log(error);
         // Le paiement a échoué, renvoyez une réponse d'erreur.
