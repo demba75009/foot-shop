@@ -5,6 +5,7 @@ import { Elements, CardElement, useStripe, useElements } from '@stripe/react-str
 import { PanierContext } from "../../context/PanierContext";
 import { userContext } from "../../context/UserContext";
 import { Table } from 'react-bootstrap';
+import Alert from 'react-bootstrap/Alert';
 
 
 
@@ -16,10 +17,14 @@ function CheckoutForm() {
 
     const Cart  = useContext(PanierContext)
     const User  = useContext(userContext)
+    const [isPaymentComplete, setIsPaymentComplete] = useState(false);
+    const [paiementRefuse, setPaiementRefuse] = useState(false);
+    const [ErrorCarteinvalide, setErrorCarteInvalide] = useState("");
+
 
     const [panier, setPanier] = useState(Cart);
+    const [clientName, setClientName] = useState("");
 
-    const user = User
   
   
       const t = panier.reduce((total, article) => total + article.quantite * article.produit.Prix, 0);
@@ -40,7 +45,7 @@ function CheckoutForm() {
 
       const { token, error } = await stripe.createToken(cardElement,{
 
-        name: user.Username
+        nameCard: clientName
       });
 
 
@@ -48,6 +53,7 @@ function CheckoutForm() {
       
         if (error) {
           console.error(error);
+          setErrorCarteInvalide(error.message)
         } 
         else {
           // Envoyez le token au serveur pour traiter le paiement.
@@ -56,26 +62,74 @@ function CheckoutForm() {
             headers: {
               'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ token: token.id, montant: t,client: user  }),
+            body: JSON.stringify({ token: token.id, montant: t,client: clientName  }),
           });
       
           if (response.ok) {
             // Le paiement a réussi, affichez un message de confirmation à l'utilisateur.
+            setIsPaymentComplete(true);
+            setPaiementRefuse(false);
+
+
           } else {
             // Le paiement a échoué, affichez un message d'erreur à l'utilisateur.
+            setPaiementRefuse(true);
+
           }
         }
       
     };
   
     return (
+      <>
+      {isPaymentComplete ? (
+        <div>
+          <h2>Paiement réussi !</h2>
+          <p>Merci pour votre achat.</p>
+        </div>
+      ) : (
+        <div>
+
+        { paiementRefuse ? (
+        <Alert variant="danger">
+        Le paiement a été refusé. Veuillez vérifier vos informations de paiement.
+      </Alert>
+        ) :""
+        }
+        <>
+
       <Form className='mt-5'>
         <Form.Group controlId="formCard">
+        <Form.Label>Nom sur la carte</Form.Label>
+
+        <Form.Control type="text" placeholder="Nom sur la carte"  value={clientName} onChange={e => setClientName(e.target.value)} />
+
+       
+
           <Form.Label>Numéro de carte</Form.Label>
-          <CardElement />
-        </Form.Group>
-        <Button className='mt-4' onClick={handleSubmit}>Payer</Button>
+          {ErrorCarteinvalide.length >0 &&
+            <Alert variant="danger">
+            Carte bancaire invalide
+            </Alert>
+
+          }
+          <CardElement
+              options={{
+                style: {
+                  base: {
+                    fontSize: '16px',
+                  },
+                },
+              }}
+            />        
+          </Form.Group>
+        <Button className='mt-4' onClick={handleSubmit}>Payer {t} Eur</Button>
       </Form>
+      </>
+      </div>
+      )}
+      </>
+
     );
   }
 
@@ -132,6 +186,7 @@ function CheckoutForm() {
 export default function Checkout(){
 
 
+
     
 
     return (
@@ -147,6 +202,10 @@ export default function Checkout(){
           </Form.Group>
           <Form.Group controlId="formBasicName">
             <Form.Label>Prenom</Form.Label>
+            <Form.Control type="text" placeholder="Entrez votre prénom" />
+          </Form.Group>
+          <Form.Group controlId="formBasicName">
+            <Form.Label>Email</Form.Label>
             <Form.Control type="text" placeholder="Entrez votre prénom" />
           </Form.Group>
           <Form.Group controlId="formBasicName">

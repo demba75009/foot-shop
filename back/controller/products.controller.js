@@ -56,23 +56,23 @@ class ProductController{
           source: token,          
           amount: montant * 100, // Le montant en centimes, par exemple 1000 pour 10 €.
           currency: 'EUR', // La devise à utiliser.
-          description: `Foot-shop commande n ° ${idCommende} `,
+          description: `Foot-shop: ${client} commande n ° ${idCommende} `,
           metadata: {
-            clientName: client[0].Username, // Extrayez le nom du client des métadonnées du token.
+            clientName: client, // Extrayez le nom du client des métadonnées du token.
           },
         });
         
         const clientStripe = await stripe.customers.create({
-          name: client[0].Username,
+          name: client,
           
         });
 
         // Le paiement a réussi, renvoyez une réponse appropriée.
-        res.sendStatus(200);
+        res.json({ success: true, charge });
       } catch (error) {
         console.log(error);
         // Le paiement a échoué, renvoyez une réponse d'erreur.
-        res.sendStatus(500);
+        res.status(500).json({ success: false, error: error.message });
       }
 
 
