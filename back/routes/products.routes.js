@@ -32,6 +32,7 @@ router.post('/products/addPanier', (req, res) => {
 router.post('/products/paiement', (req, res) => {
   // Your code here
 
+  console.log("ok");
   
   new ProductController().paiement(req,res)
 });

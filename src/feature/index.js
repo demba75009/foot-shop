@@ -4,3 +4,4 @@ export {default as AddProduct} from "../components/addProductForm/addProductForm
 export {default as Panier} from "../components/panier/Panier"
 export {default as Inscription} from "../components/inscription/Inscription"
 export {default as Connexion} from "../components/connexion/Connexion"
+export {default as Checkout} from "../components/checkout/Checkout"
