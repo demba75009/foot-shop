@@ -3,7 +3,7 @@ import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
+import ListGroup from 'react-bootstrap/ListGroup';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import { PanierContext } from "../../context/PanierContext";
 import { userContext } from "../../context/UserContext";
@@ -26,11 +26,21 @@ function CartIcon({ itemCount }) {
 }
 
 
-function TheHeader() {
+function TheHeader( {handleSearch}) {
   const Cart  = useContext(PanierContext)
-  const [panier, setPanier] = useState(Cart);
 
   const user = useContext(userContext)
+  const [searchTerm, setSearchTerm] = useState('');
+
+  const onSearchChange = (e) => {
+    const term = e.target.value;
+    setSearchTerm(term);
+    handleSearch(term);
+  };
+
+  const search = () => {
+    handleSearch(searchTerm);
+  };
 
   return (
     <>
@@ -40,6 +50,8 @@ function TheHeader() {
             <Navbar.Brand href="#">Foot-Shop</Navbar.Brand>
             <NavLink to="/panier"><CartIcon itemCount={Cart.length} />
             </NavLink> 
+
+         
             <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} />
 
             <Navbar.Offcanvas
@@ -71,21 +83,27 @@ function TheHeader() {
                   </>
                 }
                 </Nav>
-                <Form className="d-flex">
-                  <Form.Control
-                    type="search"
-                    placeholder="Search"
-                    className="me-2"
-                    aria-label="Recherchez"
-                  />
-                  <Button variant="outline-success">Recherchez</Button>
-                </Form>
+        
               </Offcanvas.Body>
             </Navbar.Offcanvas>
+           
+                
+
 
           </Container>
         </Navbar>
       ))}
+         <Form className=" container d-flex  align-md-items-center">
+                  <Form.Control
+                    type="search"
+                    placeholder="Search"
+                    className=" w-50"
+                    aria-label="Recherchez"
+                    value={searchTerm}
+                    onChange={onSearchChange}
+                  />
+                  <Button className=' ms-2 w-25' variant="outline-secondary" onClick={search}>Recherchez</Button>
+                </Form>
     </>
   );
 }
