@@ -62,6 +62,7 @@ class ProductController{
 
         });
 
+
         const charge = await stripe.charges.create({
           source: token,          
           amount: montant * 100, // Le montant en centimes, par exemple 1000 pour 10 €.
