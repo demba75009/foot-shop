@@ -3,7 +3,6 @@ import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import ListGroup from 'react-bootstrap/ListGroup';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import { PanierContext } from "../../context/PanierContext";
 import { userContext } from "../../context/UserContext";
@@ -26,11 +25,12 @@ function CartIcon({ itemCount }) {
 }
 
 
-function TheHeader( {handleSearch}) {
+function TheHeader( {handleSearch,clickResult}) {
   const Cart  = useContext(PanierContext)
 
   const user = useContext(userContext)
   const [searchTerm, setSearchTerm] = useState('');
+  
 
   const onSearchChange = (e) => {
     const term = e.target.value;
@@ -39,9 +39,11 @@ function TheHeader( {handleSearch}) {
   };
 
   const search = () => {
-    handleSearch(searchTerm);
+    clickResult(searchTerm)
+
   };
 
+  
   return (
     <>
       {[ 'md',].map((expand) => (
