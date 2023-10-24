@@ -6,6 +6,8 @@ import { PanierContext } from "../../context/PanierContext";
 import { userContext } from "../../context/UserContext";
 import { Table } from 'react-bootstrap';
 import Alert from 'react-bootstrap/Alert';
+import Inscription from "../inscription/Inscription"
+import Connexion from '../connexion/Connexion';
 
 
 
@@ -32,6 +34,7 @@ function CheckoutForm() {
 
 
     const user = User
+
   
   
       const t = panier.reduce((total, article) => total + article.quantite * article.produit.Prix, 0);
@@ -47,7 +50,10 @@ function CheckoutForm() {
         adresse,
         codePostal,
         ville
+
       }
+
+     
 
       event.preventDefault();
   
@@ -62,7 +68,7 @@ function CheckoutForm() {
 
       const { token, error } = await stripe.createToken(cardElement,{
 
-        nameCard: `${client.nom} ${client.prenom}` 
+        nameCard: `${client.nom} ${client.prenom}`,
       });
 
 
@@ -79,13 +85,18 @@ function CheckoutForm() {
             headers: {
               'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ token: token.id, montant: t,client: client }),
+            body: JSON.stringify({ token: token.id, montant: t,client: client,Commande:panier,user:user }),
           });
       
           if (response.ok) {
             // Le paiement a réussi, affichez un message de confirmation à l'utilisateur.
             setIsPaymentComplete(true);
             setPaiementRefuse(false);
+            const UserLocalStorage = JSON.parse(localStorage.getItem('user'));
+
+            UserLocalStorage.Commande.push(panier)
+            localStorage.setItem('user', JSON.stringify(UserLocalStorage));
+
 
 
           } else {
@@ -114,7 +125,10 @@ function CheckoutForm() {
         ) :""
         }
         <>
+
         <Commande />
+
+{ user.length > 0 ? (
 
       <Form className='mt-5'>
 
@@ -172,6 +186,19 @@ function CheckoutForm() {
           </Form.Group>
         <Button className='mt-4' onClick={Validation}>Payer {t} Eur</Button>
       </Form>
+) : (
+
+  <>
+    <h2 className='text-center mt-5'> Avez vous un compte ? </h2>
+
+  <div className='d-flex justify-content-evenly mt-5'>
+  <Inscription />
+  <Connexion />
+  </div>
+  </>
+)
+
+}
       </>
       </div>
       )}

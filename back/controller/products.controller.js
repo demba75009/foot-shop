@@ -1,6 +1,6 @@
 
 import Product from "../model/Product.model.js";
-
+import User from "../model/User.model.js";
 
 import Stripe from 'stripe';
 
@@ -46,7 +46,17 @@ class ProductController{
 
     async paiement(req,res){
 
-      const { token, montant,client } = req.body;
+      const { token, montant,client,Commande,user } = req.body;
+      user[0].Commande.push(Commande)
+
+      console.log(user);
+      const id = user[0]._id
+      const newData = {
+        Username:user[0].Username,
+        Email:user[0].Email,
+        Password:user[0].Password,
+        Commande:user[0].Commande,
+      }
 
       const idCommende = Math.floor(Math.random() * 1000000)
 
@@ -70,6 +80,8 @@ class ProductController{
           description: `Foot-shop: ${client.nom} ${client.prenom} commande n ° ${idCommende} `,
           
         });
+        const result = await User.findOneAndUpdate({ _id: id }, newData, { new:true  });
+
 
         // Le paiement a réussi, renvoyez une réponse appropriée.
         res.json({ success: true, charge,clientStripe });

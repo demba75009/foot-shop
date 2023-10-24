@@ -5,7 +5,7 @@ const user = schema({
     Username:String,
     Email: String,
     Password: String,
-    Cart:Array
+    Commande:Array
   
   
 });
