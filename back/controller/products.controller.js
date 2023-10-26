@@ -58,7 +58,7 @@ class ProductController{
         Commande:user[0].Commande,
       }
 
-      const idCommende = Math.floor(Math.random() * 1000000)
+      const idCommande = Math.floor(Math.random() * 1000000)
 
 
       try {
@@ -77,14 +77,14 @@ class ProductController{
           source: token,          
           amount: montant * 100, // Le montant en centimes, par exemple 1000 pour 10 €.
           currency: 'EUR', // La devise à utiliser.
-          description: `Foot-shop: ${client.nom} ${client.prenom} commande n ° ${idCommende} `,
+          description: `Foot-shop: ${client.nom} ${client.prenom} commande n ° ${idCommande} `,
           
         });
         const result = await User.findOneAndUpdate({ _id: id }, newData, { new:true  });
 
 
         // Le paiement a réussi, renvoyez une réponse appropriée.
-        res.json({ success: true, charge,clientStripe });
+        res.json({ success: true, charge,clientStripe,idCommande });
       } catch (error) {
         console.log(error);
         // Le paiement a échoué, renvoyez une réponse d'erreur.
