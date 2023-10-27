@@ -22,10 +22,15 @@ function Profil() {
     <Container className='mt-5'>
       <Row>
         <Col md={4}>
-            <img src={Avatar} alt="" srcset="" />
-        <Card>
-        <h2>Nom: </h2>         
-          <h2> {user[0].Username} </h2>
+            
+        <Card className='text-center' >
+          
+          <img style={{display:"block",margin:"auto"}} className='w-50  mr-auto' src={Avatar} alt="" srcset="" />
+         
+          <h2>{user[0].Nom} {user[0].Prenom} </h2>         
+          <h3> Date de naissance: {user[0].DateBirth} </h3>
+          <h4> Ville: {user[0].Ville} </h4>
+          <h4> Portable: {user[0].Mobile} </h4>
 
           </Card>
         </Col>

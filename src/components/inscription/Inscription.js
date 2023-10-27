@@ -13,6 +13,16 @@ export default function Inscription(){
 
         Username: yup.string()
                      .required('Le champ est obligatoire'),
+        Nom: yup.string()
+                     .required('Le champ est obligatoire'),
+        Prenom: yup.string()
+                     .required('Le champ est obligatoire'),
+        DateBirth: yup.string()
+                     .required('Le champ est obligatoire'),
+        Ville: yup.string()
+                     .required('Le champ est obligatoire'),
+        Mobile: yup.string()
+                     .required('Le champ est obligatoire'),
 
 
         Email:    yup.string()
@@ -32,6 +42,11 @@ export default function Inscription(){
 
         defaultValues:{
         Username:"",
+        Nom:"",
+        Prenom:"",
+        DateBirth:"",
+        Ville:"",
+        Mobile:"",
         Email:"",
         Password:"",
 
@@ -54,6 +69,11 @@ export default function Inscription(){
 
         UserSchema.isValid({
             Username: user.UserName,
+            Nom:user.Nom,
+            Prenom:user.Prenom,
+            DateBirth:user.DateBirth,
+            Ville:user.Ville,
+            Mobile:user.Mobile,           
             Email:user.Email,
             Password:user.Password
         })
@@ -112,6 +132,55 @@ export default function Inscription(){
             <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" {...register("Username")} name="Username"  placeholder="Username"/>
             {errors?.Username && (
             <p style={{ color: 'red' }}>{errors.Username.message}</p>
+          )}
+            </div>
+            <div className="mb-4">
+            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="Nom">
+                Nom
+            </label>
+            <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="Nom" type="text" {...register("Nom")} name="Nom"  placeholder="Nom"/>
+            {errors?.Nom && (
+            <p style={{ color: 'red' }}>{errors.Nom.message}</p>
+          )}
+            </div>
+
+            <div className="mb-4">
+            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="Prenom">
+                Prenom
+            </label>
+            <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="Prenom" type="text" {...register("Prenom")} name="Prenom"  placeholder="Prenom"/>
+            {errors?.Prenom && (
+            <p style={{ color: 'red' }}>{errors.Prenom.message}</p>
+          )}
+            </div>
+
+            <div className="mb-4">
+            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="DateBirth">
+                Date de Naissance
+            </label>
+            <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="DateBirth" type="text" {...register("DateBirth")} name="DateBirth"  placeholder="DateBirth"/>
+            {errors?.DateBirth && (
+            <p style={{ color: 'red' }}>{errors.DateBirth.message}</p>
+          )}
+            </div>
+
+            <div className="mb-4">
+            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="Ville">
+                Ville            
+            </label>
+            <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="Ville" type="text" {...register("Ville")} name="Ville"  placeholder="Ville"/>
+            {errors?.Ville && (
+            <p style={{ color: 'red' }}>{errors.Ville.message}</p>
+          )}
+            </div>
+
+            <div className="mb-4">
+            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="Mobile">
+              Portable            
+            </label>
+            <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="Ville" type="text" {...register("Mobile")} name="Mobile"  placeholder="Mobile"/>
+            {errors?.Mobile && (
+            <p style={{ color: 'red' }}>{errors.Mobile.message}</p>
           )}
             </div>
 

@@ -74,9 +74,12 @@ function TheHeader( {handleSearch,clickResult}) {
                   
                   {user.length > 0 ? (
 
-                    <Nav.Link onClick={()=>{localStorage.removeItem('user')
+                    <>
+                      <Nav.Link href="/profil">Profil</Nav.Link>
+                     <Nav.Link onClick={()=>{localStorage.removeItem('user')
                     localStorage.removeItem('panier')}} href="/">Deconnexion</Nav.Link>
 
+                    </>
 
                   ) :
                   <>
