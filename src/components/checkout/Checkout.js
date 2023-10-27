@@ -87,15 +87,18 @@ function CheckoutForm() {
             },
             body: JSON.stringify({ token: token.id, montant: t,client: client,Commande:panier,user:user }),
           });
-      
+       
           if (response.ok) {
             // Le paiement a réussi, affichez un message de confirmation à l'utilisateur.
+            const donnée = await response.json()
+            console.log(donnée);
             setIsPaymentComplete(true);
             setPaiementRefuse(false);
             const UserLocalStorage = JSON.parse(localStorage.getItem('user'));
 
-            UserLocalStorage.Commande.push(panier)
+            UserLocalStorage.Commande.push({CommandeList:panier,idCommande:donnée.idCommande})
             localStorage.setItem('user', JSON.stringify(UserLocalStorage));
+            localStorage.removeItem('panier')
 
 
 

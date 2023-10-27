@@ -23,7 +23,7 @@ function Profil() {
       <Row>
         <Col md={4}>
             
-        <Card className='text-center' >
+        <Card className='text-center sticky-top' >
           
           <img style={{display:"block",margin:"auto"}} className='w-50  mr-auto' src={Avatar} alt="" srcset="" />
          
@@ -36,35 +36,42 @@ function Profil() {
         </Col>
         <Col md={8}>
         <h2> Mes Commandes : </h2>
-          <Card>
             {
                 user[0].Commande.map(p=>(
-                 <div className=''>
-                    <hr ></hr>
-                    <h3 >Commande n° </h3>
-       
+                  <>
+                            <Card className='mt-5'>
+
+                    <h4 className='text-center'>Commande n° {p.idCommande} </h4> <h5 className='text-center'>Etat: En cour</h5>
+                  {p.CommandeList.map(p2 => (
+                    <>
+
                     
-                  
-                    <Table striped bordered>
-                    <thead>
-                      <tr>
-                        <th>Produit</th>
-                        <th>Taille</th>
-                        <th>Quantité</th>
-                        <th>Prix unitaire</th>
-                        <th>Total</th>
-                      </tr>
-                    </thead>
+
 
                     
                     {
-                        Array.isArray(p) ?
+                        Array.isArray(p2) ?
                         (
                             
                           
-                            p.map(p1=>(
+                            p2.map(p1=>(
 
                                 <>
+                                 <div className=''>
+                                   
+                      
+                                    
+                                  
+                                    <Table striped bordered>
+                                    <thead>
+                                      <tr>
+                                        <th>Produit</th>
+                                        <th>Taille</th>
+                                        <th>Quantité</th>
+                                        <th>Prix unitaire</th>
+                                        <th>Total</th>
+                                      </tr>
+                                    </thead>
                                 <tbody>
                                 <tr key={p1.produit._id}>
                                   <td>
@@ -85,38 +92,64 @@ function Profil() {
                                 </tr>
                             
                             </tbody>
+                        </Table>
+          
+                  </div>
                             
                             </>
 
                             ))
-                  ) : <tbody>
-                  <tr key={p.produit._id}>
+                  ) : 
+                  <div className=''>
+                                  
+                                  
+                                    <Table striped bordered>
+                                    <thead>
+                                      <tr>
+                                        <th>Produit</th>
+                                        <th>Taille</th>
+                                        <th>Quantité</th>
+                                        <th>Prix unitaire</th>
+                                        <th>Total</th>
+                                      </tr>
+                                    </thead>
+                  
+                  <tbody>
+                  <tr key={p2.produit._id}>
                     <td>
                         <div className='d-flex justify-content-center'>
-                        <img className='w-25 d-block' src={p.produit.Image[0]} />
+                        <img className='w-25 d-block' src={p2.produit.Image[0]} />
                         </div>
-                        <p className='text-center'>{p.produit.Nom}</p> 
+                        <p className='text-center'>{p2.produit.Nom}</p> 
                     </td>
-                    <td>{p.taille}</td>
-                    <td>{p.quantite}€</td>
-                    <td>{p.produit.Prix}€</td>
-                    <td>{p.quantite * p.produit.Prix}€</td>
+                    <td>{p2.taille}</td>
+                    <td>{p2.quantite}€</td>
+                    <td>{p2.produit.Prix}€</td>
+                    <td>{p2.quantite * p2.produit.Prix}€</td>
 
                     
                   </tr>
               
               </tbody>
+              </Table>
+
+        </div>
 
 
                     }
-                    <h3 className='text-danger text-center ms-2'>Prix total : ${calculerTotal()}</h3>
-                  </Table>
-          
-                  </div>
-                ))
+                  
+           </>
+                        ))
+      }     
+                              </Card>
+
+       </>
+
+                  
+                        ))
+
+
             }
-           
-          </Card>
         </Col>
       </Row>
     </Container>

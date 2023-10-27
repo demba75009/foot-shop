@@ -47,7 +47,9 @@ class ProductController{
     async paiement(req,res){
 
       const { token, montant,client,Commande,user } = req.body;
-      user[0].Commande.push(Commande)
+      const idCommande = Math.floor(Math.random() * 1000000)
+
+      user[0].Commande.push({CommandeList:Commande,idCommande})
 
       console.log(user);
       const id = user[0]._id
@@ -58,7 +60,6 @@ class ProductController{
         Commande:user[0].Commande,
       }
 
-      const idCommande = Math.floor(Math.random() * 1000000)
 
 
       try {
