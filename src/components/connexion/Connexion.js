@@ -53,6 +53,8 @@ export default function Connexion(){
  
     const submitSignup  = async (user) =>{
 
+    
+        console.log(user);
        
         UserSchema.isValid({
             Email:user.Email,

@@ -5,7 +5,7 @@ import ProductsItem from '../productItem/productItem';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Container, Row, Col } from 'react-bootstrap';
-
+import Banniere from "../utils/banniere"
 import { useNavigate } from 'react-router-dom';
 
 function ProductList() {
@@ -132,6 +132,7 @@ function ProductList() {
    return (
    <>
 
+
     <h1 className='text-center mt-5'> Nos produits tendance : </h1>
 
     <Container className="bg-secondary">
@@ -163,9 +164,10 @@ function ProductList() {
     </Container>
       <ToastContainer />
 
+      <Banniere />
 
 
-          <h1 className='text-center'> Liste des produits </h1>
+          <h1 className='text-center mt-5'> Liste des produits </h1>
 
 
     <div className='mt-5 d-flex flex-wrap justify-content-evenly'>

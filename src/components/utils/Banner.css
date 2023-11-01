@@ -1,0 +1,22 @@
+.banner {
+    background-color: #0b0a0a; /* Couleur de fond */
+    color: #fff; /* Couleur du texte */
+    padding: 60px 0;
+  }
+  
+  .banner h1 {
+    font-size: 36px;
+  }
+  
+  .banner p {
+    font-size: 18px;
+    margin-bottom: 20px;
+  }
+  
+  .banner button {
+    background-color: #869e11; /* Couleur du bouton */
+    border: none;
+    padding: 10px 20px;
+    font-size: 18px;
+  }
+   
