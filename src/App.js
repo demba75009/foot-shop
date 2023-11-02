@@ -4,6 +4,7 @@ import {Profil,ProductList,AddProduct,ProductDetail,Panier,Inscription,Connexion
 import TheHeader from './components/theHeader/theHeader';
 import React, { useState,useContext } from 'react';
 import { ProductsContext } from "./context/ProductContext";
+import Footer from './components/footer/footer';
 
 
 function App() {
@@ -96,7 +97,10 @@ function App() {
       <Route  path="/checkout" element={<Checkout/>} />
 
         
-      </Routes>      
+      </Routes>    
+
+      <Footer />
+
     </Router>
   );
 }
