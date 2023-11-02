@@ -145,6 +145,11 @@ function Panier({Panier}) {
   return (
     <div>
 
+{
+
+  panier.length > 0 ? (
+
+    <>
       <div>
          {/* Modal de suppression réutilisable */}
       <DeleteArticleModal
@@ -202,10 +207,11 @@ function Panier({Panier}) {
           ))}
         </tbody>
       </Table>
-      <p className='text-danger text-center ms-2'>Prix total : ${calculerTotal()}</p>
+      <p className='text-danger text-center ms-2'>Prix total : {calculerTotal()}€</p>
       <Button onClick={()=>{history("/checkout")}} variant="primary">Valider le panier</Button>
       <ToastContainer />
-
+      </>
+    ) :<h1 className='text-center mt-5'> Votre Panier est vide ! </h1>}
     </div>
   );
 }

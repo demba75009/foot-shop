@@ -19,7 +19,7 @@ export default function ProductsItemDetail({ProductList,ProductDetailAction,Prod
               <div className="px-6 pt-4 pb-2 ">
                       <h2 >
                         
-                        Prix: {ProductList.Prix} $ </h2>
+                        Prix: {ProductList.Prix} € </h2>
 
               </div>
 

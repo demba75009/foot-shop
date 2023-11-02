@@ -23,7 +23,7 @@ function Profil() {
       <Row>
         <Col md={4}>
             
-        <Card className='text-center sticky-top' >
+        <Card className='text-center' >
           
           <img style={{display:"block",margin:"auto"}} className='w-50  mr-auto' src={Avatar} alt="" srcset="" />
          
