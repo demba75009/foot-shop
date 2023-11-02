@@ -6,23 +6,22 @@ import { PanierContext } from "../../context/PanierContext";
 import { userContext } from "../../context/UserContext";
 import { Table } from 'react-bootstrap';
 import Alert from 'react-bootstrap/Alert';
-import Inscription from "../inscription/Inscription"
-import Connexion from '../connexion/Connexion';
+
+import { useNavigate } from 'react-router-dom';
 
 
 
 const stripePromise = loadStripe('pk_test_51NLncNCV4GRE9vPYUQSxxjMIeRk1riEMQCb34lvQOByEuF1UFPYSeC0VCHl4UPoGN7Y6xJmij0puoD8fwMX0AeGF00Bs5vjhBp');
 
-function CheckoutForm() {
+function CheckoutForm({panier,user}) {
     const stripe = useStripe();
     const elements = useElements();
+    const history = useNavigate(); // Utilisé pour naviguer vers une autre route
 
-    const Cart  = useContext(PanierContext)
-    const User  = useContext(userContext)
+
     const [isPaymentComplete, setIsPaymentComplete] = useState(false);
     const [paiementRefuse, setPaiementRefuse] = useState(false);
     const [ErrorCarteinvalide, setErrorCarteInvalide] = useState("");
-    const [panier, setPanier] = useState(Cart);
     const [clientName, setClientName] = useState("");
     const [nom, setNom] = useState("");
     const [prenom, setPrenom] = useState("");
@@ -33,7 +32,6 @@ function CheckoutForm() {
 
 
 
-    const user = User
 
   
   
@@ -129,7 +127,7 @@ function CheckoutForm() {
         }
         <>
 
-        <Commande />
+        <Commande panierOK={panier} />
 
 { user.length > 0 ? (
 
@@ -192,11 +190,13 @@ function CheckoutForm() {
 ) : (
 
   <>
-    <h2 className='text-center mt-5'> Avez vous un compte ? </h2>
+    <h2 className='text-center mt-5'> Avez vous un compte ? <br></br> Pour continuez , veuillez vous inscrire ou vous connectez </h2>
 
   <div className='d-flex justify-content-evenly mt-5'>
-  <Inscription />
-  <Connexion />
+
+    <Button variant='primary' onClick={()=> history("/signup")}> S'inscrire </Button>
+    <Button variant="info" onClick={()=> history("/signin")}> Se connecter </Button>
+
   </div>
   </>
 )
@@ -210,11 +210,11 @@ function CheckoutForm() {
     );
   }
 
-  function Commande(){
+  function Commande({panierOK}){
     
   const Cart  = useContext(PanierContext)
 
-  const [panier, setPanier] = useState(Cart);
+  const [panier, setPanier] = useState(panierOK);
 
 
   const calculerTotal = () => {
@@ -240,19 +240,19 @@ function CheckoutForm() {
             {panier.map((article) => (
               <tr key={article.produit._id}>
                 <td>
-                  <img className='d-block' width={0} height={50}  src={article.produit.Image[0]} />
+                  <img className='d-block' width={50} height={50}  src={article.produit.Image[0]} />
                     {article.produit.Nom}
                 </td>
                 <td>{article.taille}</td>
                 <td>{article.quantite}</td>
-                <td>${article.produit.Prix}</td>
-                <td>${article.quantite * article.produit.Prix}</td>
+                <td>{article.produit.Prix}€</td>
+                <td>{article.quantite * article.produit.Prix}€</td>
                 
               </tr>
             ))}
           </tbody>
         </Table>
-        <h3 className='text-danger text-center ms-2'>Prix total : ${calculerTotal()}</h3>
+        <h3 className='text-danger text-center ms-2'>Prix total : {calculerTotal()}€</h3>
 
         </>
 
@@ -260,7 +260,7 @@ function CheckoutForm() {
   }
   
 
-export default function Checkout(){
+export default function Checkout({Panier,updateUser}){
 
 
     
@@ -273,7 +273,7 @@ export default function Checkout(){
         
           {/* Ajoutez d'autres champs de livraison ici */}
           <Elements stripe={stripePromise}>
-            <CheckoutForm />
+            <CheckoutForm panier={Panier} user={updateUser} />
           </Elements>
         </Form>
       </Container>

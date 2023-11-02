@@ -119,7 +119,7 @@ function App() {
       <Route  path="/add" element={<AddProduct/>} />
       <Route  path="/signup" element={<Inscription/>} />
       <Route  path="/signin" element={<Connexion updateUser={updateUser}  />} />
-      <Route  path="/checkout" element={<Checkout/>} />
+      <Route  path="/checkout" element={<Checkout Panier = {panier} updateUser={user}/>} />
 
         
       </Routes>    

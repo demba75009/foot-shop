@@ -176,7 +176,7 @@ function Panier({Panier}) {
           {panier.map((article) => (
             <tr key={article.produit._id}>
               <td>
-                <img className='d-block' width={0} height={50}  src={article.produit.Image[0]} />
+                <img className='d-block' width={50} height={50}  src={article.produit.Image[0]} />
                   {article.produit.Nom}
               </td>
               <td>

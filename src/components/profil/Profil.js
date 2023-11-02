@@ -25,7 +25,7 @@ function Profil() {
             
         <Card className='text-center' >
           
-          <img style={{display:"block",margin:"auto"}} className='w-50  mr-auto' src={Avatar} alt="" srcset="" />
+          <img style={{display:"block",margin:"auto"}} className='  mr-auto'  src={Avatar} alt="" srcset="" />
          
           <h2>{user[0].Nom} {user[0].Prenom} </h2>         
           <h3> Date de naissance: {user[0].DateBirth} </h3>
@@ -76,7 +76,7 @@ function Profil() {
                                 <tr key={p1.produit._id}>
                                   <td>
                                     <div className='d-flex justify-content-center'>
-                                        <img className='w-25 d-block' src={p1.produit.Image[0]} />
+                                        <img className=' d-block' src={p1.produit.Image[0]} width={50} height={50} />
                                     </div>
                                      <p className='text-center'>{p1.produit.Nom}</p> 
                                   </td>
@@ -118,7 +118,7 @@ function Profil() {
                   <tr key={p2.produit._id}>
                     <td>
                         <div className='d-flex justify-content-center'>
-                        <img className='w-25 d-block' src={p2.produit.Image[0]} />
+                        <img className=' d-block' src={p2.produit.Image[0]} width={50} height={50} />
                         </div>
                         <p className='text-center'>{p2.produit.Nom}</p> 
                     </td>
