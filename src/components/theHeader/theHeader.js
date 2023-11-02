@@ -4,8 +4,6 @@ import Form from 'react-bootstrap/Form';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import Offcanvas from 'react-bootstrap/Offcanvas';
-import { PanierContext } from "../../context/PanierContext";
-import { userContext } from "../../context/UserContext";
 import { useState,useContext } from "react";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -15,20 +13,12 @@ import {  NavLink } from "react-router-dom";
 
 
 
-function CartIcon({ itemCount }) {
-  return (
-    <div>
-      <FontAwesomeIcon icon={faShoppingCart} size="2x" />
-      {itemCount > 0 && <span className={Style.cart}>{itemCount}</span>}
-    </div>
-  );
-}
 
+     
+ 
 
-function TheHeader( {handleSearch,clickResult}) {
-  const Cart  = useContext(PanierContext)
+function TheHeader( {userTrue,panierLength,handleSearch,clickResult}) {
 
-  const user = useContext(userContext)
   const [searchTerm, setSearchTerm] = useState('');
   
 
@@ -42,7 +32,7 @@ function TheHeader( {handleSearch,clickResult}) {
     clickResult(searchTerm)
 
   };
-
+ 
   
   return (
     <>
@@ -50,7 +40,8 @@ function TheHeader( {handleSearch,clickResult}) {
         <Navbar key={expand} expand={expand} className="bg-body-tertiary mb-3">
           <Container fluid>
             <Navbar.Brand href="#">Foot-Shop</Navbar.Brand>
-            <NavLink to="/panier"><CartIcon itemCount={Cart.length} />
+            <NavLink to="/panier"> <FontAwesomeIcon icon=       {faShoppingCart} size="2x" />
+              {panierLength.length > 0 && <span className={Style.cart}>{panierLength.length}</span>}
             </NavLink> 
 
          
@@ -72,7 +63,7 @@ function TheHeader( {handleSearch,clickResult}) {
                   <Nav.Link href="/produit">Maillot</Nav.Link>
                   <Nav.Link href="/panier">Panier</Nav.Link>
                   
-                  {user.length > 0 ? (
+                  {userTrue.length > 0 ? (
 
                     <>
                       <Nav.Link href="/profil">Profil</Nav.Link>
@@ -112,5 +103,5 @@ function TheHeader( {handleSearch,clickResult}) {
     </>
   );
 }
-
+ 
 export default TheHeader;

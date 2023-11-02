@@ -8,7 +8,8 @@ import { Container, Row, Col } from 'react-bootstrap';
 import Banniere from "../utils/banniere"
 import { useNavigate } from 'react-router-dom';
 
-function ProductList() {
+function ProductList({updatePanier}) {
+
   const Prod  = useContext(ProductsContext)
   const Cart  = useContext(PanierContext)
   const history = useNavigate()
@@ -20,7 +21,7 @@ function ProductList() {
    const [panier, setPanier] = useState(Cart);
 
    
-
+ 
    const Tendance = Produits.slice(4,8)
 
 
@@ -65,6 +66,8 @@ function ProductList() {
           
             setPanier(nouveauPanier);  
   
+            updatePanier(nouveauPanier)
+
                 // Sérialisez le panier en JSON
           const panierJSON = JSON.stringify(nouveauPanier);
   
@@ -112,6 +115,8 @@ function ProductList() {
       localStorage.setItem('panier', JSON.stringify(tableauLocalStorage));
 
       setPanier(tableauLocalStorage);
+
+      updatePanier(tableauLocalStorage)
 
 
 

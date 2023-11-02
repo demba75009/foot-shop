@@ -5,15 +5,38 @@ import TheHeader from './components/theHeader/theHeader';
 import React, { useState,useContext } from 'react';
 import { ProductsContext } from "./context/ProductContext";
 import Footer from './components/footer/footer';
+import { PanierContext } from "./context/PanierContext";
+import { userContext } from "./context/UserContext";
 
 
 function App() {
+
+  const User  = useContext(userContext)
+  const [user, setUser] = useState(User);
+
+
+  const Cart  = useContext(PanierContext)
+  const [panier, setPanier] = useState(Cart);
+
+
   const [searchTerm, setSearchTerm] = useState('');
   const Prod  = useContext(ProductsContext)
   const [Produits, setProduit] = useState(Prod)
   const [searchResults, setSearchResults] = useState([]);
   const [searchResultsClick, setSearchResultsClick] = useState([]);
   const [showResults, setShowResults] = useState(false);
+
+
+
+  const updatePanier = (newPanier) => {
+    setPanier(newPanier);
+  };
+
+
+  const updateUser = (newUser) => {
+    setUser(newUser);
+  };
+
 
   const closeResults = () => {
     setShowResults(false);
@@ -74,11 +97,13 @@ function App() {
 
   }
 
+
+
  
 
   return (
     <Router>
-      <TheHeader handleSearch={handleSearch} results={searchResults} clickResult={handleSearchClick} />
+      <TheHeader userTrue={user} panierLength = {panier}  handleSearch={handleSearch} results={searchResults} clickResult={handleSearchClick} />
       <ResultatRecherche Detail={ProduitDetail} results={searchResultsClick} show1={showResults} closeResult={closeResults} />
 
       <RechercheEnCour Detail={ProduitDetail} results={searchResults}  />
@@ -87,13 +112,13 @@ function App() {
       <Routes>
 
       <Route  path="/" element={<Acceuil />} />
-      <Route  path="/produit" element={<ProductList />} />
+      <Route  path="/produit" element={<ProductList updatePanier={updatePanier} />} />
       <Route  path="/profil" element={<Profil />} />
-      <Route  path="/Panier" element={<Panier/>} />
-      <Route  path="/Product/:id" element={<ProductDetail/>} />
+      <Route  path="/Panier" element={<Panier Panier = {panier}/>} />
+      <Route  path="/Product/:id" element={<ProductDetail updatePanier={updatePanier}/>} />
       <Route  path="/add" element={<AddProduct/>} />
       <Route  path="/signup" element={<Inscription/>} />
-      <Route  path="/signin" element={<Connexion/>} />
+      <Route  path="/signin" element={<Connexion updateUser={updateUser}  />} />
       <Route  path="/checkout" element={<Checkout/>} />
 
         

@@ -8,7 +8,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 
-export default function Connexion(){
+export default function Connexion({updateUser}){
 
 
 
@@ -54,7 +54,6 @@ export default function Connexion(){
     const submitSignup  = async (user) =>{
 
     
-        console.log(user);
        
         UserSchema.isValid({
             Email:user.Email,
@@ -88,6 +87,7 @@ export default function Connexion(){
 
        if(responseData !== "error")
        {
+        updateUser(user25)
         toast.success(`Bienvenue ${userProfilOK.Username}!`,{
 
             autoClose:500,

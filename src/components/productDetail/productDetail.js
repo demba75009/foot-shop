@@ -9,7 +9,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 
-export default function ProduitDetail () {
+export default function ProduitDetail ({updatePanier}) {
 
 
 
@@ -122,6 +122,8 @@ export default function ProduitDetail () {
 
       
          setPanier(nouveauPanier);  
+         updatePanier(nouveauPanier)
+
 
              // Sérialisez le panier en JSON
        const panierJSON = JSON.stringify(nouveauPanier);

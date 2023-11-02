@@ -6,12 +6,11 @@ import { useNavigate } from 'react-router-dom';
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-function Panier() {
+function Panier({Panier}) {
  
 
-  const Cart  = useContext(PanierContext)
 
-  const [panier, setPanier] = useState(Cart);
+  const [panier, setPanier] = useState(Panier);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [articleIdToDelete, setArticleIdToDelete] = useState(null);
   const [articleSizeToDelete, setArticleSizeToDelete] = useState("");
