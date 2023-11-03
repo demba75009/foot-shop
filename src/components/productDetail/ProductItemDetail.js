@@ -6,6 +6,12 @@ export default function ProductsItemDetail({ProductList,ProductDetailAction,Prod
     
   const [image, setimage] = useState(ProductList.Image[0])
 
+  const [zoomed, setZoomed] = useState(false);
+
+  const toggleZoom = () => {
+    setZoomed(!zoomed);
+  };
+
     return(
     
 
@@ -15,7 +21,7 @@ export default function ProductsItemDetail({ProductList,ProductDetailAction,Prod
               
 
           <div className="ImageDesign d-lg-flex "> 
-            <img className={` ${Style.img}`} src={image} alt={ProductList.Image[0]}/>
+            <img onClick={toggleZoom} className={`image-zoom ${zoomed ? 'zoomed' : ''} ${Style.img}`} src={image} alt={ProductList.Image[0]}/>
         
             <hr />
             

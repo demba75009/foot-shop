@@ -15,3 +15,21 @@ code {
   
   
 
+
+  .image-zoom-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .image-zoom {
+    cursor: zoom-in;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .image-zoom.zoomed {
+    transform: scale(2); /* Ajustez la valeur pour le niveau de zoom souhaité */
+    cursor: zoom-out;
+  }
+  
