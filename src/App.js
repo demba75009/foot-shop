@@ -114,7 +114,7 @@ function App() {
       <Route  path="/" element={<Acceuil />} />
       <Route  path="/produit" element={<ProductList updatePanier={updatePanier} />} />
       <Route  path="/profil" element={<Profil />} />
-      <Route  path="/Panier" element={<Panier Panier = {panier}/>} />
+      <Route  path="/Panier" element={<Panier updatePanier={updatePanier} Panier = {panier}/>} />
       <Route  path="/Product/:id" element={<ProductDetail updatePanier={updatePanier}/>} />
       <Route  path="/add" element={<AddProduct/>} />
       <Route  path="/signup" element={<Inscription/>} />

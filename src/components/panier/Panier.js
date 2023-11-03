@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-function Panier({Panier}) {
+function Panier({updatePanier,Panier}) {
  
 
 
@@ -79,10 +79,6 @@ function Panier({Panier}) {
     var indexASupprimer = -1;
 
 
-    console.log(tableauLocalStorage);
-
-    console.log(article);
-
     for (var i = 0; i < tableauLocalStorage.length; i++) {
      if (tableauLocalStorage[i].produit._id === article.produit._id && tableauLocalStorage[i].taille === article.taille  ) {
        indexASupprimer = i;
@@ -135,6 +131,7 @@ function Panier({Panier}) {
       localStorage.setItem('panier', JSON.stringify(tableauLocalStorage));
 
       setPanier(tableauLocalStorage);
+      updatePanier(tableauLocalStorage)
       toast.success(`${produit.produit.Nom} a été retiré au panier !`);
       
       closeDeleteModal();
@@ -160,14 +157,14 @@ function Panier({Panier}) {
         t={articleSizeToDelete}
       />
     </div>
-      <h2>Panier</h2>
-      <Table striped bordered>
+    
+      <h2 className='text-center mt-5'>Votre Panier:</h2>
+      <Table className='container w-50' striped bordered>
         <thead>
           <tr>
             <th>Produit</th>
             <th>Taille</th>
             <th>Quantité</th>
-            <th>Prix unitaire</th>
             <th>Total</th>
             <th>Action</th>
           </tr>
@@ -181,12 +178,12 @@ function Panier({Panier}) {
               </td>
               <td>
               
-              <select value={article.taille} onChange={(e)=>ChangeSize(article,e.target.value)} className="mt-4 ms-2 h-25" id="taille">
-                          <option value="xs">Taille XS</option>
-                          <option value="s">Taille S</option>
-                          <option value="m">Taille M</option>
-                          <option value="l">Taille L</option>
-                          <option value="xl">Taille XL</option>
+              <select value={article.taille} onChange={(e)=>ChangeSize(article,e.target.value)} className=" ms-2 h-25" id="taille">
+                          <option value="xs"> XS</option>
+                          <option value="s"> S</option>
+                          <option value="m"> M</option>
+                          <option value="l"> L</option>
+                          <option value="xl"> XL</option>
                       </select>
 
               
@@ -200,15 +197,19 @@ function Panier({Panier}) {
                   ))}
                 </select>
             </td>
-              <td>${article.produit.Prix}</td>
-              <td>${article.quantite * article.produit.Prix}</td>
+              <td>{article.quantite * article.produit.Prix}€</td>
               <td><Button variant="light" onClick={()=>openDeleteModal(article.produit._id,article.taille)}className='btn btn-outline-danger'>X</Button></td>
             </tr>
           ))}
         </tbody>
       </Table>
-      <p className='text-danger text-center ms-2'>Prix total : {calculerTotal()}€</p>
-      <Button onClick={()=>{history("/checkout")}} variant="primary">Valider le panier</Button>
+      <h3 className='text-danger text-center ms-2'>Prix total : {calculerTotal()}€</h3>
+     
+     <div className='mt-5 text-center'>
+         <Button className='mx-auto' onClick={()=>{history("/checkout")}} variant="success">Valider le panier</Button>
+      </div>
+
+      
       <ToastContainer />
       </>
     ) :<h1 className='text-center mt-5'> Votre Panier est vide ! </h1>}
