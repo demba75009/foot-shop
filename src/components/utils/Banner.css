@@ -1,6 +1,6 @@
 .banner {
-    background-color: #0b0a0a; /* Couleur de fond */
-    color: #fff; /* Couleur du texte */
+    background-color:#EDE734; /* Couleur de fond */
+    color: black; /* Couleur du texte */
     padding: 60px 0;
   }
   
@@ -14,7 +14,7 @@
   }
   
   .banner button {
-    background-color: #869e11; /* Couleur du bouton */
+    background-color: black; /* Couleur du bouton */
     border: none;
     padding: 10px 20px;
     font-size: 18px;

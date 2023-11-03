@@ -1,18 +1,22 @@
 import React from 'react';
 import { Container, Row, Col, Button } from 'react-bootstrap';
 import './Banner.css'; // Pour les styles
+import { useNavigate } from 'react-router-dom';
 
  function Banniere(){
 
-    return (
+  const history = useNavigate(); // Utilisé pour naviguer vers une autre route
 
+
+    return (
+ 
     <div className="banner mt-5">
     <Container>
       <Row>
         <Col md={6}>
           <h1>Des produits adapté a tous </h1>
           <p>Découvrez nos produit</p>
-          <Button variant="primary">Acheter maintenant</Button>
+          <Button onClick={()=> history("/produit")} variant="primary">Acheter maintenant</Button>
         </Col>
         <Col md={6}>
           {/* Ajoutez ici une image ou un élément visuel */}
@@ -21,6 +25,6 @@ import './Banner.css'; // Pour les styles
     </Container>
   </div>
     )
-}
+} 
 
 export default Banniere

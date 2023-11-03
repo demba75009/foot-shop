@@ -4,8 +4,6 @@ import { useState,useContext } from "react";
 import ProductsItem from '../productItem/productItem';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { Container, Row, Col } from 'react-bootstrap';
-import Banniere from "../utils/banniere"
 import { useNavigate } from 'react-router-dom';
 
 function ProductList({updatePanier}) {
@@ -22,7 +20,6 @@ function ProductList({updatePanier}) {
 
    
  
-   const Tendance = Produits.slice(4,8)
 
 
     panier.forEach(o1 => {
@@ -138,38 +135,7 @@ function ProductList({updatePanier}) {
    <>
 
 
-    <h1 className='text-center mt-5'> Nos produits tendance : </h1>
-
-    <Container className="bg-secondary">
-      <Row>
-        <Col className="d-flex overflow-md-hidden overflow-sm-visible" xs={12} sm={12} md={12} lg={12} style={{ overflowX: 'auto' }}>
-
-    {Tendance.map(p=>(
-
-
-<div>
-
-        <ProductsItem
-      
-      ProductList = {p}
-      ProductDetailAction={()=>Detail(p._id)}
-      ProductAddPanier={()=>AddPanier(p._id,1)}
-      ProductDeletePanier={()=>DeletePanier(p._id,1)}
-
-
-
-      />
-
-</div>
-
-    ))}
-    </Col>
-        {/* Add more columns as needed */}
-      </Row>
-    </Container>
-      <ToastContainer />
-
-      <Banniere />
+    
 
 
           <h1 className='text-center mt-5'> Liste des produits </h1>
