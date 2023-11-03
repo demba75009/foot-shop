@@ -47,7 +47,7 @@ function TheHeader( {userTrue,panierLength,handleSearch,clickResult}) {
          
             <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} />
 
-            <Navbar.Offcanvas
+            <Navbar.Offcanvas className="bg-light"
               id={`offcanvasNavbar-expand-${expand}`}
               aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
               placement="end"

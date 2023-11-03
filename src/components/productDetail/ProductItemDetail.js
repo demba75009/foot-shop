@@ -12,26 +12,25 @@ export default function ProductsItemDetail({ProductList,ProductDetailAction,Prod
         <div onClick={ProductDetailAction} className={`${Style.item} mt-5`}>
 
             <div className="ms-2 mb-2">
-                  <h1> 
-                     {ProductList.Nom}
-
-                  </h1>
-              <div className="px-6 pt-4 pb-2 ">
-                      <h2 >
-                        
-                        Prix: {ProductList.Prix} € </h2>
-
-              </div>
+              
 
           <div className="ImageDesign d-lg-flex "> 
             <img className={` ${Style.img}`} src={image} alt={ProductList.Image[0]}/>
         
             <hr />
             
-            <div className={`${Style.imgGrille}  flex-lg-column mt-5`}> 
+            <div className={`${Style.imgGrille}  flex-lg-column mt-5 ms-2`}> 
 
+            <div>
+
+                <h1>{ProductList.Nom}</h1>
+                      
+                <h2>Prix: {ProductList.Prix} € </h2>
 
                 <img onClick={()=>setimage(ProductList.Image[0])} className={`  w-1/4`} src={ProductList.Image[0]} alt={ProductList.Image[0]}/>  
+
+
+    
 
                 { ProductList.Image.length > 1 ? (
                   
@@ -72,17 +71,7 @@ export default function ProductsItemDetail({ProductList,ProductDetailAction,Prod
 
 
                 }
-
-
-
-
-
-            
-            </div>
-                
-
-           </div>       
-                <div className="d-flex justify-content-center"> 
+                   <div className="d-flex justify-content-center"> 
                 
                         
                         <p className="mt-4 ms-2">Taille:</p>
@@ -101,20 +90,34 @@ export default function ProductsItemDetail({ProductList,ProductDetailAction,Prod
                     <option key={i} value={i + 1}>{i + 1}</option>
                   ))}
                   </select>
-                  <Button onClick={ProductAddPanier} style={{marginBottom:"1rem",marginTop:"1rem"}} variant="success">Ajoutez au panier</Button>
 
-              </div>
+      </div>
+                
 
-                <div>
+        <div className="cointainer text-center">
 
+                  <Button className="mx-auto" onClick={ProductAddPanier} style={{marginBottom:"1rem",marginTop:"1rem"}} variant="success">Ajoutez au panier</Button>
 
                   <h2 className="text-center"> Descriptif technique : </h2>
 
                   <p className="text-center">
                   {ProductList.Description}
                   </p>
-                  
-                  </div>
+          
+          </div>
+              </div>
+
+
+
+
+
+
+            
+            </div>
+                
+
+           </div>       
+             
               
               </div>
              

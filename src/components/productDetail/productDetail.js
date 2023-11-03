@@ -110,7 +110,7 @@ export default function ProduitDetail ({updatePanier}) {
 
 
        }
-
+ 
 
        if(!tooglePanier1){
 
