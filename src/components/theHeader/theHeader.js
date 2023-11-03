@@ -8,6 +8,8 @@ import { useState,useContext } from "react";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
+
 import Style from "./theHeader.module.css"
 import {  NavLink } from "react-router-dom";
 
@@ -98,7 +100,8 @@ function TheHeader( {userTrue,panierLength,handleSearch,clickResult}) {
                     value={searchTerm}
                     onChange={onSearchChange}
                   />
-                  <Button className=' ms-2 w-25' variant="outline-secondary" onClick={search}>Recherchez</Button>
+                  <Button className=' ms-2 w-25' variant="outline-secondary" onClick={search}>    <FontAwesomeIcon icon={faSearch} />
+                  </Button>
                 </Form>
     </>
   );
