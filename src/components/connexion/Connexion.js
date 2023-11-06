@@ -120,10 +120,10 @@ export default function Connexion({updateUser}){
        <div className={`${Style.formu} w-full text-center  max-w-xs`}>
 
 
-        <h1 className="my-20">Connectez - vous ! </h1>
-        <p className="my-10 text-red-500">{ErrorIncorrect}</p>
+        <h1 className="mt-5">Connectez - vous ! </h1>
+        <p className="mt-5 text-red-500">{ErrorIncorrect}</p>
 
-        <form onSubmit={ handleSubmit(submitSignup)} className={` bg-white shadow-md rounded px-8 pt-6 my-10 pb-8 mb-4`}>
+        <form onSubmit={ handleSubmit(submitSignup)} className={` container shadow-md rounded `}>
 
 
          
@@ -131,7 +131,7 @@ export default function Connexion({updateUser}){
             <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="username">
                 Email
             </label>
-            <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="email" type="email"  {...register("Email")} name="Email"placeholder="email"/>
+            <input className="shadow appearance-none border rounded ms-2 focus:outline-none focus:shadow-outline" id="email" type="email"  {...register("Email")} name="Email"placeholder="email"/>
 
             {errors?.Email && (
             <p style={{ color: 'red' }}>{errors.Email.message}</p>
@@ -139,18 +139,18 @@ export default function Connexion({updateUser}){
             </div>
 
 
-            <div className="mb-6">
+            <div className="mt-2">
             <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">
                 Password
             </label>
-            <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="password" type="password" {...register("Password")} name="Password" placeholder="******************"/>
+            <input className="shadow appearance-none border rounded ms-2 leading-tight focus:outline-none focus:shadow-outline" id="password" type="password" {...register("Password")} name="Password" placeholder="******************"/>
             {errors?.Password && (
             <p style={{ color: 'red' }}>{errors.Password.message}</p>
           )}
 
             </div>
-            <div className="flex items-center justify-between">
-            <button  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+            <div className=" mt-5 text-center">
+            <button  className="btn btn-outline-info" type="submit">
                 Sign Up
             </button>
          

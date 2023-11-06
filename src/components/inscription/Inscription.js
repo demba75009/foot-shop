@@ -4,6 +4,10 @@ import fetch from "isomorphic-fetch";
 import { useNavigate } from 'react-router-dom';
 import { useForm } from "react-hook-form";
 import * as yup from 'yup';
+import { Form, Button, Container, Row, Col } from 'react-bootstrap';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 
 
@@ -90,10 +94,20 @@ export default function Inscription(){
 
             const responseData = await response.json();
             console.log(responseData);
+            setErrorEmail(responseData)
             
             if(responseData !== "errorEmail" && responseData !== "errorPseudo" )
-            history('/');
-            else 
+            toast.success(`Inscription Validé!`,{
+
+              autoClose:500,
+            
+              onClose:()=>{
+                  setTimeout(() => {
+  
+                  history('/signin');
+                  },1000)
+              }
+          });   else 
             throw Error
 
         } catch (error) {
@@ -102,11 +116,11 @@ export default function Inscription(){
             console.log(error);
             
 
-            if(error === "errorEmail")
+            if(ErrorEmail === "errorEmail")
             
              setErrorIncorrect("l'email existe déja veuillez en entre un autre")
-            else 
-             setErrorIncorrect("le Username existe déja veuillez en entre un autre")
+            else if(ErrorEmail === "errorPseudo")
+             setErrorIncorrect("le userName existe déja veuillez en entre un autre")
         
         }
         
@@ -117,106 +131,115 @@ export default function Inscription(){
     return (
 
         <>
-       <div className={`${Style.formu} w-full text-center  max-w-xs`}>
+      <Container className="mt-5">
+      <Row className="justify-content-center">
+        <Col md={6}>
         
-        <h1 className="my-20">Inscrivez - vous ! </h1>
-        <p className=" my-10 text-red-500">{ErrorIncorrect}</p>
+        <h1 className="text-center">Inscrivez - vous ! </h1>
+        <p className=" my-10 text-danger">{ErrorIncorrect}</p>
        
-        <form onSubmit={ handleSubmit(submitSignup)} className={` bg-white shadow-md rounded px-8 pt-6 my-10 pb-8 mb-4`}>
+        <Form onSubmit={ handleSubmit(submitSignup)} >
 
 
-            <div className="mb-4">
-            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="username">
+            <Form.Group>
+            <Form.Label  htmlFor="username">
                 Username
-            </label>
-            <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" {...register("Username")} name="Username"  placeholder="Username"/>
+            </Form.Label>
+            <Form.Control  id="username" type="text" {...register("Username")} name="Username"  placeholder="Username"/>
             {errors?.Username && (
             <p style={{ color: 'red' }}>{errors.Username.message}</p>
           )}
-            </div>
-            <div className="mb-4">
-            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="Nom">
+            </Form.Group>
+            <Form.Group>
+            <Form.Label  htmlFor="Nom">
                 Nom
-            </label>
-            <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="Nom" type="text" {...register("Nom")} name="Nom"  placeholder="Nom"/>
+            </Form.Label>
+            <Form.Control  id="Nom" type="text" {...register("Nom")} name="Nom"  placeholder="Nom"/>
             {errors?.Nom && (
             <p style={{ color: 'red' }}>{errors.Nom.message}</p>
           )}
-            </div>
+            </Form.Group>
 
-            <div className="mb-4">
-            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="Prenom">
+            <Form.Group>
+            <Form.Label  htmlFor="Prenom">
                 Prenom
-            </label>
-            <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="Prenom" type="text" {...register("Prenom")} name="Prenom"  placeholder="Prenom"/>
+            </Form.Label>
+            <Form.Control  id="Prenom" type="text" {...register("Prenom")} name="Prenom"  placeholder="Prenom"/>
             {errors?.Prenom && (
             <p style={{ color: 'red' }}>{errors.Prenom.message}</p>
           )}
-            </div>
+            </Form.Group>
 
-            <div className="mb-4">
-            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="DateBirth">
+            <Form.Group>
+            <Form.Label  htmlFor="DateBirth">
                 Date de Naissance
-            </label>
-            <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="DateBirth" type="text" {...register("DateBirth")} name="DateBirth"  placeholder="DateBirth"/>
+            </Form.Label>
+            <Form.Control  id="DateBirth" type="text" {...register("DateBirth")} name="DateBirth"  placeholder="DateBirth"/>
             {errors?.DateBirth && (
             <p style={{ color: 'red' }}>{errors.DateBirth.message}</p>
           )}
-            </div>
+            </Form.Group>
 
-            <div className="mb-4">
-            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="Ville">
+            <Form.Group>
+            <Form.Label  htmlFor="Ville">
                 Ville            
-            </label>
-            <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="Ville" type="text" {...register("Ville")} name="Ville"  placeholder="Ville"/>
+            </Form.Label>
+            <Form.Control  id="Ville" type="text" {...register("Ville")} name="Ville"  placeholder="Ville"/>
             {errors?.Ville && (
             <p style={{ color: 'red' }}>{errors.Ville.message}</p>
           )}
-            </div>
+            </Form.Group>
 
-            <div className="mb-4">
-            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="Mobile">
+            <Form.Group>
+            <Form.Label  htmlFor="Mobile">
               Portable            
-            </label>
-            <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="Ville" type="text" {...register("Mobile")} name="Mobile"  placeholder="Mobile"/>
+            </Form.Label>
+            <Form.Control  id="Ville" type="text" {...register("Mobile")} name="Mobile"  placeholder="Mobile"/>
             {errors?.Mobile && (
             <p style={{ color: 'red' }}>{errors.Mobile.message}</p>
           )}
-            </div>
+            </Form.Group>
 
-            <div className="mb-4">
-            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="username">
+            <Form.Group>
+            <Form.Label  htmlFor="username">
                 Email
-            </label>
-            <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="email" type="email" {...register("Email")} name="Email"   placeholder="email"/>
+            </Form.Label>
+            <Form.Control  id="email" type="email" {...register("Email")} name="Email"   placeholder="email"/>
             {errors?.Email && (
             <p style={{ color: 'red' }}>{errors.Email.message}</p>
           )}
 
-            </div>
+            </Form.Group>
 
 
-            <div className="mb-6">
-            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">
+            <Form.Group>
+            <Form.Label  htmlFor="password">
                 Password
-            </label>
-            <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="password" type="password" {...register("Password")} name="Password" placeholder="******************"/>
+            </Form.Label>
+            <Form.Control className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="password" type="password" {...register("Password")} name="Password" placeholder="******************"/>
 
 
             {errors?.Password && (
             <p style={{ color: 'red' }}>{errors.Password.message}</p>
           )}
+            </Form.Group>
+
+            <div className="text-center mt-5"> 
+
+            <Button className="mx-auto" variant="primary" type="submit">
+              S'inscrire
+            </Button>
+
             </div>
-            <div className="flex items-center justify-between">
-            <button  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
-                Sign Up
-            </button>
+
          
-            </div>
-        </form>
+        </Form>
  
-</div>
-        
+        </Col>
+      </Row>
+    </Container>   
+    <ToastContainer />
+     
         </>
 
     )

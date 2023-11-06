@@ -13,9 +13,8 @@ export default function MaquetteAcceuil(){
     return (
         <div className="background-div mt-5">
         <Container>
-          <h1>Trouvez votre style gagnant chez Foot-Shop : <br></br> Maillots de football de qualité pour tous les passionnés du jeu!</h1>
-          <p>Découvrir nos produits</p>
-          <Button onClick={()=> history("/produit")} variant="primary">Acheter maintenant</Button>
+          <h1>Bienvenue chez Foot-Shop : <br></br> Maillots de football de qualité pour tous les passionnés du jeu!</h1>
+          <Button onClick={()=> history("/produit")} variant="primary">Découvrir nos produits</Button>
 
         </Container>
       </div>
