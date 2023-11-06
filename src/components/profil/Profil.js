@@ -41,7 +41,7 @@ function Profil() {
                   <>
                             <Card className='mt-5'>
 
-                    <h4 className='text-center'>Commande n° {p.idCommande} </h4> <h5 className='text-center'>Etat: En cour</h5>
+                    <h4 className='text-center'>Commande n° {p.idCommande} </h4> <h5 className='text-center'>Etat: En cour de traitement</h5>
                   {p.CommandeList.map(p2 => (
                     <>
 
