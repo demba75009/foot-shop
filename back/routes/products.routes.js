@@ -8,7 +8,7 @@ router.get('/products', (req, res) => {
    
   new ProductController().get(req,res)
 });
-router.get('/products', (req, res) => {
+router.get('/products1', (req, res) => {
   // Your code here
    
 res.send("ok")
