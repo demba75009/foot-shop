@@ -112,9 +112,15 @@ function CheckoutForm({panier,user}) {
     return (
       <>
       {isPaymentComplete ? (
-        <div>
+        <div className='text-center mt-5' >
           <h2>Paiement réussi !</h2>
           <p>Merci pour votre achat.</p>
+          <p>Nous vous enverront un mail de confirmation de votre commande a {email}</p>
+          <Button variant='info' onClick={()=> history("/produit")}>Achetez d'autre produit</Button>
+          <Commande panierOK={panier} />
+          
+       
+
         </div>
       ) : (
         <div>
@@ -159,14 +165,16 @@ function CheckoutForm({panier,user}) {
             <Form.Control type="text" placeholder="Entrez votre Ville"  value={ville} onChange={e => setVille(e.target.value)}/>
           </Form.Group>
 
-        <h2 className='mt-5'>Paiement:</h2>
-        <Form.Group controlId="formCard">
+        <h2 className='mt-5 text-center'>Paiement:</h2>
+
+        <Form.Group controlId="for">
 
         <Form.Label>Nom sur la carte</Form.Label>
 
         <Form.Control type="text" placeholder="Nom sur la carte"  value={clientName} onChange={e => setClientName(e.target.value)} />
+        </Form.Group>
 
-       
+        <Form.Group className='mt-2' controlId="formCard">      
 
           <Form.Label>Numéro de carte</Form.Label>
           {ErrorCarteinvalide.length >0 &&
@@ -185,7 +193,15 @@ function CheckoutForm({panier,user}) {
               }}
             />        
           </Form.Group>
-        <Button className='mt-4' onClick={Validation}>Payer {t} Eur</Button>
+
+        <div className='text-center'>
+          {isPaymentComplete ?(
+         
+         <Button variant="success">V</Button>
+          ) : 
+          <Button className='mt-4 mx-auto' onClick={Validation}>Payer {t} €</Button>
+          }
+        </div>
       </Form>
 ) : (
 
