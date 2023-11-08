@@ -26,7 +26,7 @@ app.use(session({
   secret: "dffdsfd", resave:false, saveUninitialized:false, 
   cookie: {maxAge: 3600000} 
 }));
-
+ 
 app.use(flash());
 app.use(usersRouter);
 app.use(productsRouter);
