@@ -14,7 +14,7 @@ class ProductController{
 
        const Products = await Product.find({}).exec()
 
-       console.log(Products);
+       res.send(Products)
 
        return res.json(Products)
 
