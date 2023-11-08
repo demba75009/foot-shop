@@ -8,6 +8,12 @@ router.get('/products', (req, res) => {
    
   new ProductController().get(req,res)
 });
+router.get('/products', (req, res) => {
+  // Your code here
+   
+res.send("ok")
+
+});
 
 router.get('/products/:value', (req, res) => {
   // Your code here
