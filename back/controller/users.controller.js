@@ -3,7 +3,7 @@ import User from "../model/User.model.js";
 
 import jwt from "jsonwebtoken"
  class UserController{
-
+ 
 
    async get(req,res) {
 
