@@ -89,7 +89,7 @@ class ProductController{
       } catch (error) {
         console.log(error);
         // Le paiement a échoué, renvoyez une réponse d'erreur.
-        res.status(500).json({ success: false, error: error.message });
+        res.json({ success: false, error: "Le paiement a été refusé" });
       }
 
 
