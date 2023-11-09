@@ -168,7 +168,7 @@ function CheckoutForm({panier,user}) {
          
           { paiementRefuse ? (
             <Alert variant="danger mt-5">
-            Le paiement a été refusé. Veuillez vérifier vos informations de paiement.
+            Le paiement a été refusé. Vous ne disposez pas de fond suffisant.
           </Alert>
             ) :""
           }
