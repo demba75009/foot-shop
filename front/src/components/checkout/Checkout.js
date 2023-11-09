@@ -90,6 +90,7 @@ function CheckoutForm({panier,user}) {
             // Le paiement a réussi, affichez un message de confirmation à l'utilisateur.
             const donnée = await response.json()
             console.log(donnée);
+            if(donnée.success === true){
             setIsPaymentComplete(true);
             setPaiementRefuse(false);
             const UserLocalStorage = JSON.parse(localStorage.getItem('user'));
@@ -97,7 +98,12 @@ function CheckoutForm({panier,user}) {
             UserLocalStorage.Commande.push({CommandeList:panier,idCommande:donnée.idCommande})
             localStorage.setItem('user', JSON.stringify(UserLocalStorage));
             localStorage.removeItem('panier')
+            }
+            else{
+              setPaiementRefuse(true);
 
+
+            }
 
 
           } else {
