@@ -13,8 +13,7 @@
     },
     {
       "src": "/",
-      "status": 308,
-      "headers": { "Location": "https://example.com/" }
+      "headers": { "Location": "routes/products.routes.js" }
     }
 
   ]
