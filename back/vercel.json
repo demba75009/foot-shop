@@ -9,11 +9,10 @@
   "routes": [
     {
       "src": "/products",
-      "dest": "routes/products.routes.js"
+      "dest": "/routes/products.routes.js"
     },
     {
       "src": "/",
-      "status": 308,
       "headers": { "Location": "products" }
     }
 
