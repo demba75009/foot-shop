@@ -2,7 +2,7 @@
   "version": 2,
   "builds": [
     {
-      "src": "server.cjs",
+      "src": "/",
       "use": "@now/node"
     }
   ],
