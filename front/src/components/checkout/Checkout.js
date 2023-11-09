@@ -129,14 +129,9 @@ function CheckoutForm({panier,user}) {
 
         </div>
       ) : (
-        <div>
+        <div className='mt-5'>
 
-        { paiementRefuse ? (
-        <Alert variant="danger">
-        Le paiement a été refusé. Veuillez vérifier vos informations de paiement.
-      </Alert>
-        ) :""
-        }
+       
         <>
 
         <Commande panierOK={panier} />
@@ -170,6 +165,13 @@ function CheckoutForm({panier,user}) {
             <Form.Label>Ville</Form.Label>
             <Form.Control type="text" placeholder="Entrez votre Ville"  value={ville} onChange={e => setVille(e.target.value)}/>
           </Form.Group>
+         
+          { paiementRefuse ? (
+            <Alert variant="danger mt-5">
+            Le paiement a été refusé. Veuillez vérifier vos informations de paiement.
+          </Alert>
+            ) :""
+          }
 
         <h2 className='mt-5 text-center'>Paiement:</h2>
 
