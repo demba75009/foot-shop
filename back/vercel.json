@@ -13,7 +13,8 @@
     },
     {
       "src": "/",
-      "headers": { "Location": "products" }
+      "headers": { "Location": "products" },
+      "dest":"/(.*)"
     }
 
   ]
