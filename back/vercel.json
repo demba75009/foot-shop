@@ -4,12 +4,20 @@
       {
           "src": "*.js",
           "use": "@vercel/node"
+      },
+      {
+        "src": "../front",
+        "use": "@vercel/static-build"
       }
   ],
   "routes": [
       {
           "src": "/(.*)",
           "dest": "/"
+      },
+      {
+        "src": "/(.*)",
+        "dest": "../front"
       }
   ]
 }
