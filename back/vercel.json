@@ -10,6 +10,12 @@
     {
       "src": "/products",
       "dest": "routes/products.routes.js"
+    },
+    {
+      "src": "/",
+      "status": 308,
+      "headers": { "Location": "https://example.com/" }
     }
+
   ]
 }    
