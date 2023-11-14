@@ -78,7 +78,7 @@ function CheckoutForm({panier,user}) {
         } 
         else {
           // Envoyez le token au serveur pour traiter le paiement.
-          const response = await fetch('foot-shop-back.vercel.app/products/paiement', {
+          const response = await fetch('https://foot-shop-back.vercel.app/products/paiement', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
