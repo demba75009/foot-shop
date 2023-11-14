@@ -61,23 +61,23 @@ function TheHeader( {userTrue,panierLength,handleSearch,clickResult}) {
               </Offcanvas.Header>
               <Offcanvas.Body>
                 <Nav className="justify-content-end flex-grow-1 pe-3 text-dark">
-                  <NavLink className="me-2 nav-link" to="/">Acceuil</NavLink>
-                  <NavLink className="me-2 nav-link" to="/produit">Maillot</NavLink>
-                  <NavLink className="me-2 nav-link" to="/panier">Panier</NavLink>
+                  <NavLink className="me-2 nav-link" href="/">Acceuil</NavLink>
+                  <NavLink className="me-2 nav-link" href="/produit">Maillot</NavLink>
+                  <NavLink className="me-2 nav-link" href="/panier">Panier</NavLink>
                   
                   {userTrue.length > 0 ? (
 
                     <>
-                      <NavLink className="me-2 nav-link" to="/profil">Profil</NavLink>
+                      <NavLink className="me-2 nav-link" href="/profil">Profil</NavLink>
                      <NavLink className="me-2 nav-link" onClick={()=>{localStorage.removeItem('user')
-                    localStorage.removeItem('panier')}} to="/">Deconnexion</NavLink>
+                    localStorage.removeItem('panier')}} href="/">Deconnexion</NavLink>
 
                     </>
 
                   ) :
                   <>
-                  <NavLink className="me-2 nav-link" to="/signin">Connexion</NavLink>
-                  <NavLink className="me-2 nav-link" to="/signup">Inscription</NavLink>
+                  <NavLink className="me-2 nav-link" href="/signin">Connexion</NavLink>
+                  <NavLink className="me-2 nav-link" href="/signup">Inscription</NavLink>
                   </>
                 }
                 </Nav>
