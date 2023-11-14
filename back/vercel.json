@@ -7,14 +7,10 @@
     }
   ],
   "routes": [
+ 
     {
-      "src": "/products",
-      "dest": "/routes/products.routes.js"
-    },
-    {
-      "src": "/",
-      "headers": { "Location": "products" },
-      "dest":"/(.*)"
+      "src": "/(.*)",
+      "dest":"/"
     }
 
   ]
