@@ -42,7 +42,7 @@ function TheHeader( {userTrue,panierLength,handleSearch,clickResult}) {
         <Navbar key={expand} expand={expand} className="bg-body-tertiary mb-3 sticky-top">
           <Container fluid>
             <Navbar.Brand ><NavLink className="nav-link" to="/">Foot-Shop </NavLink></Navbar.Brand>
-            <NavLink to="/panier"> <FontAwesomeIcon icon=       {faShoppingCart} size="2x" />
+            <NavLink className="nav-link" to="/panier"> <FontAwesomeIcon icon=       {faShoppingCart} size="2x" />
               {panierLength.length > 0 && <span className={Style.cart}>{panierLength.length}</span>}
             </NavLink> 
 
