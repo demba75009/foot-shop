@@ -12,7 +12,7 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
 import Style from "./theHeader.module.css"
 import {  NavLink } from "react-router-dom";
-
+import Logo from "../../assets/logo.png"
 
 
 
@@ -41,7 +41,7 @@ function TheHeader( {userTrue,panierLength,handleSearch,clickResult}) {
       {[ 'md',].map((expand) => (
         <Navbar key={expand} expand={expand} className="bg-body-tertiary mb-3 sticky-top">
           <Container fluid>
-            <Navbar.Brand href="#">Foot-Shop</Navbar.Brand>
+            <NavLink to="/"><img src={Logo} /></NavLink>
             <NavLink to="/panier"> <FontAwesomeIcon icon=       {faShoppingCart} size="2x" />
               {panierLength.length > 0 && <span className={Style.cart}>{panierLength.length}</span>}
             </NavLink> 
@@ -61,23 +61,23 @@ function TheHeader( {userTrue,panierLength,handleSearch,clickResult}) {
               </Offcanvas.Header>
               <Offcanvas.Body>
                 <Nav className="justify-content-end flex-grow-1 pe-3">
-                  <Nav.Link href="/">Acceuil</Nav.Link>
-                  <Nav.Link href="/produit">Maillot</Nav.Link>
-                  <Nav.Link href="/panier">Panier</Nav.Link>
+                  <NavLink to="/">Acceuil</NavLink>
+                  <NavLink to="/produit">Maillot</NavLink>
+                  <NavLink to="/panier">Panier</NavLink>
                   
                   {userTrue.length > 0 ? (
 
                     <>
-                      <Nav.Link href="/profil">Profil</Nav.Link>
-                     <Nav.Link onClick={()=>{localStorage.removeItem('user')
-                    localStorage.removeItem('panier')}} href="/">Deconnexion</Nav.Link>
+                      <NavLink to="/profil">Profil</NavLink>
+                     <NavLink onClick={()=>{localStorage.removeItem('user')
+                    localStorage.removeItem('panier')}} to="/">Deconnexion</NavLink>
 
                     </>
 
                   ) :
                   <>
-                  <Nav.Link href="/signin">Connexion</Nav.Link>
-                  <Nav.Link href="/signup">Inscription</Nav.Link>
+                  <NavLink to="/signin">Connexion</NavLink>
+                  <NavLink to="/signup">Inscription</NavLink>
                   </>
                 }
                 </Nav>

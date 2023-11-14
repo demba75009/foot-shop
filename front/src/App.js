@@ -2,7 +2,7 @@ import './App.css';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import {Profil,ProductList,AddProduct,ProductDetail,Panier,Inscription,Connexion,Checkout,ResultatRecherche, RechercheEnCour,Acceuil} from './feature/index';
 import TheHeader from './components/theHeader/theHeader';
-import React, { useState,useContext } from 'react';
+import React, { useState,useContext,useEffect } from 'react';
 import { ProductsContext } from "./context/ProductContext";
 import Footer from './components/footer/footer';
 import { PanierContext } from "./context/PanierContext";
@@ -26,6 +26,21 @@ function App() {
   const [searchResultsClick, setSearchResultsClick] = useState([]);
   const [showResults, setShowResults] = useState(false);
 
+
+  useEffect(() => {
+    const handleScroll = () => {
+      // Revenir en haut de la page
+      window.scrollTo(0, 0);
+    };
+
+    // Ajouter un écouteur d'événement pour détecter les changements de page
+    window.addEventListener('popstate', handleScroll);
+
+    // Nettoyer l'écouteur d'événement lors de la suppression du composant
+    return () => {
+      window.removeEventListener('popstate', handleScroll);
+    };
+  }, []); // Le tableau vide signifie que cet effet ne dépend d'aucune variable, il s'exécute une seule fois
 
 
   const updatePanier = (newPanier) => {
