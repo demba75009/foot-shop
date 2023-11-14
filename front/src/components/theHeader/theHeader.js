@@ -41,7 +41,7 @@ function TheHeader( {userTrue,panierLength,handleSearch,clickResult}) {
       {[ 'md',].map((expand) => (
         <Navbar key={expand} expand={expand} className="bg-body-tertiary mb-3 sticky-top">
           <Container fluid>
-            <Navbar.Brand to="/">Foot-Shop</Navbar.Brand>
+            <Navbar.Brand ><NavLink to="/">Foot-Shop </NavLink></Navbar.Brand>
             <NavLink to="/panier"> <FontAwesomeIcon icon=       {faShoppingCart} size="2x" />
               {panierLength.length > 0 && <span className={Style.cart}>{panierLength.length}</span>}
             </NavLink> 
@@ -61,23 +61,23 @@ function TheHeader( {userTrue,panierLength,handleSearch,clickResult}) {
               </Offcanvas.Header>
               <Offcanvas.Body>
                 <Nav className="justify-content-end flex-grow-1 pe-3 text-dark">
-                  <NavLink className="me-2 nav-link" href="/">Acceuil</NavLink>
-                  <NavLink className="me-2 nav-link" href="/produit">Maillot</NavLink>
-                  <NavLink className="me-2 nav-link" href="/panier">Panier</NavLink>
+                  <Nav.Link className="me-2 nav-link" href="/">Acceuil</Nav.Link>
+                  <Nav.Link className="me-2 nav-link" href="/produit">Maillot</Nav.Link>
+                  <Nav.Link className="me-2 nav-link" href="/panier">Panier</Nav.Link>
                   
                   {userTrue.length > 0 ? (
 
                     <>
-                      <NavLink className="me-2 nav-link" href="/profil">Profil</NavLink>
-                     <NavLink className="me-2 nav-link" onClick={()=>{localStorage.removeItem('user')
-                    localStorage.removeItem('panier')}} href="/">Deconnexion</NavLink>
+                      <Nav.Link className="me-2 nav-link" href="/profil">Profil</Nav.Link>
+                     <Nav.Link className="me-2 nav-link" onClick={()=>{localStorage.removeItem('user')
+                    localStorage.removeItem('panier')}} href="/">Deconnexion</Nav.Link>
 
                     </>
 
                   ) :
                   <>
-                  <NavLink className="me-2 nav-link" href="/signin">Connexion</NavLink>
-                  <NavLink className="me-2 nav-link" href="/signup">Inscription</NavLink>
+                  <Nav.Link className="me-2 nav-link" href="/signin">Connexion</Nav.Link>
+                  <Nav.Link className="me-2 nav-link" href="/signup">Inscription</Nav.Link>
                   </>
                 }
                 </Nav>
