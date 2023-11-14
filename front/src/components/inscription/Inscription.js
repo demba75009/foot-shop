@@ -85,7 +85,7 @@ export default function Inscription(){
           try {
 
 
-                const response = await  fetch("http://localhost:5000/add", { method: 'POST',   
+                const response = await  fetch("foot-shop-back.vercel.app/add", { method: 'POST',   
                 headers: {
                 'Content-Type': 'application/json'
                 },

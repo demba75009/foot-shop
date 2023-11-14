@@ -65,7 +65,7 @@ export default function Connexion({updateUser}){
           try {
 
 
-          const response = await  fetch("http://localhost:5000/connexion", { method: 'POST',   
+          const response = await  fetch("foot-shop-back.vercel.app/connexion", { method: 'POST',   
           headers: {
            'Content-Type': 'application/json'
          },

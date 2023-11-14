@@ -6,7 +6,7 @@ let products = []
 
 async function getProduct(){
 
-    const ProductRequest = await  fetch("http://localhost:5000/products",{method:"GET"})
+    const ProductRequest = await  fetch("foot-shop-back.vercel.app/products",{method:"GET"})
   
     const prod = await ProductRequest.json()
 
