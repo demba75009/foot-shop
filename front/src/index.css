@@ -46,11 +46,20 @@ code {
 
  
   }
+  
+  .detail{
+
+    padding-bottom: 80vh ;
+  }
 
   @media screen and(min-width:750px) {
     .App{
 
     padding-bottom: 120px; /* height of your footer */
+    }
+    .detail{
+
+      padding-bottom: 0vh;
     }
   }
 

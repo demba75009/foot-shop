@@ -39,7 +39,7 @@ function TheHeader( {userTrue,panierLength,handleSearch,clickResult}) {
   return (
     <>
       {[ 'md',].map((expand) => (
-        <Navbar key={expand} expand={expand} className="bg-body-tertiary mb-3 fixed-top">
+        <Navbar key={expand} expand={expand} className="bg-body-tertiary mb-3 sticky-top">
           <Container fluid>
             <Navbar.Brand ><NavLink className="nav-link" to="/">Foot-Shop </NavLink></Navbar.Brand>
             <NavLink className="nav-link" to="/panier"> <FontAwesomeIcon icon=       {faShoppingCart} size="2x" />

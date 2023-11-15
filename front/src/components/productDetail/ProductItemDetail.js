@@ -15,7 +15,7 @@ export default function ProductsItemDetail({ProductList,ProductDetailAction,Prod
     return(
     
 
-        <div onClick={ProductDetailAction} className={`${Style.item} mt-5`}>
+        <div onClick={ProductDetailAction} className={`${Style.item}  mt-5`}>
 
             <div className="ms-2 mb-2">
               
@@ -100,13 +100,13 @@ export default function ProductsItemDetail({ProductList,ProductDetailAction,Prod
       </div>
                 
 
-        <div className="cointainer text-center">
+        <div className="cointainer text-center ">
 
                   <Button className="mx-auto" onClick={ProductAddPanier} style={{marginBottom:"1rem",marginTop:"1rem"}} variant="success">Ajoutez au panier</Button>
 
                   <h2 className="text-center"> Descriptif technique : </h2>
 
-                  <p className="text-center">
+                  <p className="text-center ">
                   {ProductList.Description}
                   </p>
           

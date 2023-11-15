@@ -7,6 +7,7 @@ import ProductsItemDetail from "./ProductItemDetail";
 import { PanierContext } from "../../context/PanierContext";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Banniere from "../utils/banniere";
 
 
 export default function ProduitDetail ({updatePanier}) {
@@ -147,7 +148,7 @@ export default function ProduitDetail ({updatePanier}) {
 
    
 
-       <div className="my-20 lg:flex">
+       <div className="my-20 lg:flex detail ">
 
      {Produits.filter(pt=>pt._id ===idParams).map(p=>(
 
@@ -169,10 +170,9 @@ export default function ProduitDetail ({updatePanier}) {
 
        
        
-
        </div>
        
-
+        <Banniere />
 
     
        </>
