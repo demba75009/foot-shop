@@ -1,6 +1,6 @@
 import './App.css';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import {Profil,ProductList,AddProduct,ProductDetail,Panier,Inscription,Connexion,Checkout,ResultatRecherche, RechercheEnCour,Acceuil} from './feature/index';
+import {Profil,ProductList,AddProduct,ProductDetail,Panier,Inscription,Connexion,Checkout,ResultatRecherche, RechercheEnCour,Acceuil,APropos} from './feature/index';
 import TheHeader from './components/theHeader/theHeader';
 import React, { useState,useContext,useEffect } from 'react';
 import { ProductsContext } from "./context/ProductContext";
@@ -135,6 +135,7 @@ function App() {
       <Route  path="/Panier" element={<Panier updatePanier={updatePanier} Panier = {panier}/>} />
       <Route  path="/Product/:id" element={<ProductDetail updatePanier={updatePanier}/>} />
       <Route  path="/add" element={<AddProduct/>} />
+      <Route  path="/APropos" element={<APropos/>} />
       <Route  path="/signup" element={<Inscription/>} />
       <Route  path="/signin" element={<Connexion updateUser={updateUser}  />} />
       <Route  path="/checkout" element={<Checkout Panier = {panier} updateUser={user}/>} />

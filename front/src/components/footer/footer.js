@@ -13,7 +13,7 @@ function Footer  ()  {
           </Col>
           <Col sm={12} md={4}>
             <h4>Quelques informations:</h4>
-            <NavLink className="navlink">A Propos</NavLink>
+            <NavLink to="/APropos" className="navlink">A Propos</NavLink>
           </Col>
           <Col  sm={12} md={4}>
             <h4>Contact Information</h4>

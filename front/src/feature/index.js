@@ -9,3 +9,4 @@ export {default as ResultatRecherche} from "../components/resultatRecherche/resu
 export {default as RechercheEnCour} from "../components/resultatRecherche/rechercheEnCour"
 export {default as Profil} from "../components/profil/Profil"
 export {default as Acceuil} from "../components/Acceuil/Acceuil"
+export {default as APropos} from "../components/APropos/APropos"
