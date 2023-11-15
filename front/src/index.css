@@ -42,15 +42,15 @@ code {
     overflow: hidden;
     display: block;
     position: relative;
-    padding-bottom: 200px; /* height of your footer */
+    padding-bottom: 230px; /* height of your footer */
 
 
   }
 
-  @media screen and(min-width:800px) {
+  @media screen and(min-width:750px) {
     .App{
 
-    padding-bottom: 140px; /* height of your footer */
+    padding-bottom: 120px; /* height of your footer */
     }
   }
 
