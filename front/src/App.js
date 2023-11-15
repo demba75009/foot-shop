@@ -117,7 +117,10 @@ function App() {
  
 
   return (
-    <Router>
+    <div className='App'>
+    
+    <Router >
+
       <TheHeader userTrue={user} panierLength = {panier}  handleSearch={handleSearch} results={searchResults} clickResult={handleSearchClick} />
       <ResultatRecherche Detail={ProduitDetail} results={searchResultsClick} show1={showResults} closeResult={closeResults} />
 
@@ -140,7 +143,13 @@ function App() {
       </Routes>    
 
 
+          <Footer />
+
+
+
     </Router>
+    </div>
+
   );
 }
 

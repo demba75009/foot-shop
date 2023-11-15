@@ -12,16 +12,21 @@ const testimonials = [
 
 function Temoignages ()  {
     return(
-  <Container>
-     <h2 className='text-center mt-5'> Temoigniages : </h2>
-    <Row>
+  
+      <Container className="mt-5">
+        <h2 className="text-center">Ils nous ont fait confiance:</h2>
+      <Row>
+        <Col className="d-flex overflow-md-hidden overflow-sm-visible" xs={12} sm={12} md={12} lg={12} style={{ overflowX: 'auto' }}>
       {testimonials.map((testimonial, index) => (
         <Col key={index} md={3}  sm={12} className="mb-3">
           <Testimonial {...testimonial} />
         </Col>
       ))}
-    </Row>
-  </Container>
+ </Col>
+        {/* Add more columns as needed */}
+      </Row>
+    </Container>
+
     )
 };
 

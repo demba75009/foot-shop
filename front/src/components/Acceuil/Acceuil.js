@@ -32,31 +32,31 @@ return(
 
     <h1 className='text-center mt-5'> Nos produits tendance : </h1>
 
-<Container className="bg-light">
-  <Row>
-    <Col className="d-flex overflow-md-hidden overflow-sm-visible" xs={12} sm={12} md={12} lg={12} style={{ overflowX: 'auto' }}>
+    <Container className="bg-light">
+      <Row>
+        <Col className="d-flex overflow-md-hidden overflow-sm-visible" xs={12} sm={12} md={12} lg={12} style={{ overflowX: 'auto' }}>
 
-{Tendance.map(p=>(
-
-
-<div>
-
-    <TendanceItem
-  
-  ProductList = {p}
-  ProductDetailAction={()=>Detail(p._id)}
+            {Tendance.map(p=>(
 
 
+            <div>
 
-  />
+                <TendanceItem
+              
+              ProductList = {p}
+              ProductDetailAction={()=>Detail(p._id)}
 
-</div>
 
-))}
-</Col>
-    {/* Add more columns as needed */}
-  </Row>
-</Container>
+
+              />
+
+            </div>
+
+            ))}
+        </Col>
+        {/* Add more columns as needed */}
+      </Row>
+    </Container>
 
 
     <Banniere />

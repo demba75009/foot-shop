@@ -6,7 +6,10 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: rgba(236, 236, 236, 0.153);
+  height:100vh;
+  position: relative;
 }
+
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
@@ -20,7 +23,8 @@ code {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height:100%
+  
   }
   
   .image-zoom {
@@ -32,4 +36,23 @@ code {
     transform: scale(2); /* Ajustez la valeur pour le niveau de zoom souhaité */
     cursor: zoom-out;
   }
-  
+ 
+  .App{
+    min-height: 100vh; /* will cover the 100% of viewport */
+    overflow: hidden;
+    display: block;
+    position: relative;
+    padding-bottom: 140px; /* height of your footer */
+
+
+  }
+
+
+  footer {
+    margin-top: 1rem;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+   }
+
+   

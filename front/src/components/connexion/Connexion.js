@@ -96,7 +96,7 @@ export default function Connexion({updateUser}){
                 setTimeout(() => {
 
                 history('/');
-                },1000)
+                },100)
             }
         });
 

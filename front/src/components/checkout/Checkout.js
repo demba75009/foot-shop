@@ -207,7 +207,7 @@ function CheckoutForm({panier,user}) {
          
          <Button variant="success">V</Button>
           ) : 
-          <Button className='mt-4 mx-auto' onClick={Validation}>Payer {t} €</Button>
+          <Button className='mt-4 mx-auto' variant='secondary' onClick={Validation}>Payer {t} €</Button>
           }
         </div>
       </Form>
@@ -218,8 +218,8 @@ function CheckoutForm({panier,user}) {
 
   <div className='d-flex justify-content-evenly mt-5'>
 
-    <Button variant='primary' onClick={()=> history("/signup")}> S'inscrire </Button>
-    <Button variant="info" onClick={()=> history("/signin")}> Se connecter </Button>
+    <Button variant='dark' onClick={()=> history("/signup")}> S'inscrire </Button>
+    <Button className='text-white' variant="secondary btn-outline-success" onClick={()=> history("/signin")}> Se connecter </Button>
 
   </div>
   </>

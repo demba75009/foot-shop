@@ -105,7 +105,7 @@ export default function Inscription(){
                   setTimeout(() => {
   
                   history('/signin');
-                  },1000)
+                  },100)
               }
           });   else 
             throw Error
